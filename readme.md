@@ -50,8 +50,26 @@ npm install --force axios@0.21.0 bootstrap@4.5.3 draft-js@0.11.7 draft-js-export
 - first start with authentication because it will be the middleware applied to all routes.
 - create a model / controller / config / routes etc.
 
-## STEP 3: USER REGISTRATION
+## STEP 3: USER REGISTRATION / SIGN IN & VALIDATE TOKENS
 
 - user model will contain (isEmailtaken statics, Schema.pre save password hashing if is.Modified(password), generate token schema.methods)
 - those functions will be used in the registration route/controller for new users
 - the model has access to the user via this (user = this)
+- the methods responsible for tokens,passwords comparison, are all stored in model and referenced in the controller (good structure)
+- if you have multiple res.send and get error: ERR HTTP HEADERS SENT just add return in front of the res
+
+- validating token needs a middleware we can apply to multiple routes
+- validating with jwt.verify
+- res.locals.whatever can help us store decoded value of a token and use it elsewhere
+
+## STEP 4: CREATING ROLES ADMIN VS USER
+
+- on specific routes we can check if the user has specific access or authorisation, discovered access control library to manage roles on express env / you need a config file and a middleware (create a roles.js in config and middleware) / need to create a schema
+- updating your own details if it's any major detail like email or password a token must be generated
+
+## STEP 5:
+
+## PORT ISSUES
+
+- force port to end run:
+  npx kill-port 3001
