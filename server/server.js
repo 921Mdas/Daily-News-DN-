@@ -3,10 +3,13 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const userRoute = require("./routes/api/users");
+const { verifyToken } = require("./middleware/auth");
 
 // middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(verifyToken);
+// app.use(authMiddleware.verifyToken);
 require("dotenv").config();
 
 // connect routes to server

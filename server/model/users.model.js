@@ -84,6 +84,12 @@ userSchema.methods.generateToken = function () {
   return token;
 };
 
+userSchema.methods.comparePassword = async function (candidatePassword) {
+  let user = this;
+  const match = await bcrypt.compare(candidatePassword, user.password);
+  return match;
+};
+
 //statics method that doesnt require to know who the user is
 userSchema.statics.emailTaken = async function (email) {
   const user = this;
