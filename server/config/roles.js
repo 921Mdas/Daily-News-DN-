@@ -11,17 +11,23 @@ let grantObj = {
       // we have decide what information to send back or show when user access profile
       "read:own": ["*", "!password", "!_id"],
       "update:own": ["*"],
-      "delete:own": ["*"],
-    },
+      "delete:own": ["*"]
+    }
   },
   admin: {
     profile: {
       "create:any": ["*"],
       "read:any": ["*"],
       "update:any": ["*"],
-      "delete:any": ["*"],
+      "delete:any": ["*"]
     },
-  },
+    article: {
+      "create:any": ["*"],
+      "read:any": ["*"],
+      "update:any": ["*"],
+      "delete:any": ["*"]
+    }
+  }
 };
 
 const roles = new Accesscontrol(grantObj);
