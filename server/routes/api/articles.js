@@ -1,0 +1,43 @@
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+// express router will help link this to the server
+const express = require("express");
+const router = express.Router();
+const ctrl = require("../../controller/article.controller");
+require("dotenv").config();
+const { isLoggedIn } = require("../../middleware/auth");
+const { grantAccess } = require("../../middleware/roles");
+
+router.post(
+  "/admin/addarticles",
+  isLoggedIn,
+  grantAccess("createOwn", "article"),
+  ctrl.addArticle
+);
+
+router.get(
+  "/admin/:id",
+  isLoggedIn,
+  grantAccess("readOwn", "article"),
+  ctrl.readArticle
+);
+
+router.post(
+  "/admin/:id/delete",
+  isLoggedIn,
+  grantAccess("deleteOwn", "article"),
+  ctrl.deleteArticle
+);
+
+router.post(
+  "/admin/:id/update",
+  isLoggedIn,
+  grantAccess("updateOwn", "article"),
+  ctrl.updateArticle
+);
+
+// fetching articles by status
+
+router.get("/status/:id", ctrl.getPublicArticles);
+
+module.exports = router;
