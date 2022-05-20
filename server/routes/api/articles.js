@@ -36,8 +36,18 @@ router.post(
   ctrl.updateArticle
 );
 
-// fetching articles by status
-
+// fetching articles by status without
 router.get("/status/:id", ctrl.getPublicArticles);
+
+// load more content initially
+router.post("/loadmore", ctrl.loadMore);
+
+// pagination
+router.post(
+  "/admin/paginate",
+  isLoggedIn,
+  grantAccess("readAny", "article"),
+  ctrl.paginate
+);
 
 module.exports = router;

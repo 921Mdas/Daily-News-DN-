@@ -67,7 +67,22 @@ npm install --force axios@0.21.0 bootstrap@4.5.3 draft-js@0.11.7 draft-js-export
 - on specific routes we can check if the user has specific access or authorisation, discovered access control library to manage roles on express env / you need a config file and a middleware (create a roles.js in config and middleware) / need to create a schema
 - updating your own details if it's any major detail like email or password a token must be generated
 
-## STEP 5:
+## STEP 5: NORMAL ARTICLE SCHEMA & RENDER CONTENT BY STATUS
+
+-done
+
+## STEP 6: LOAD MORE CONTENT
+
+- without someone having logged into the system, they should be able to see the top or 10 article(artists, etc) depending on the project
+- // {sortBy:"\_id",order:"asc", limit:10, skip:0}
+- on the client we will send this information to the backend
+- a post request with some of the information on line 2
+- we can set this for the common users but the admin should be able to see the whole database so for him let' sset up pagination
+- there is a better method - pagination (look into aggregate paginate option)
+
+**\*\*\*\***\*\*\***\*\*\*\***PAGINATION******\*\*******\*******\*\*******
+
+-
 
 ## PORT ISSUES
 

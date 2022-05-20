@@ -1,6 +1,9 @@
 const e = require("express");
 const { StatusCodes } = require("http-status-codes");
 const Article = require("../model/article.model");
+const { sortArgsHelper } = require("../config/helper");
+const { options } = require("../routes/api/articles");
+const { Aggregate } = require("mongoose");
 
 const addArticle = async (req, res, next) => {
   try {
@@ -77,10 +80,56 @@ const getPublicArticles = async (req, res, next) => {
   }
 };
 
+// load initial content
+const loadMore = async (req, res, next) => {
+  try {
+    //   {sortBy:"_id",order:"asc", limit:10}
+    let sortArgs = sortArgsHelper(req.body);
+
+    const article = await Article.find({ status: "public" })
+      .sort([[sortArgs.sortBy, sortArgs.order]])
+      .skip(sortArgs.skip)
+      .limit(sortArgs.limit);
+
+    if (!article || article.length === 0) {
+      return res.status(StatusCodes.NOT_FOUND).json({ message: "not found" });
+    }
+    res.status(StatusCodes.OK).send(article);
+  } catch (err) {
+    if (err) return res.status(StatusCodes.NOT_FOUND).json(err);
+  }
+};
+
+// pagination
+
+const paginate = async (req, res, next) => {
+  try {
+    const limit = req.body.limit ? req.body.limit : 5;
+    // we can use features to search through the database
+    // const aggregateQuery = Article.aggregate([
+    //   //   { $match: { status: "draft" } }/
+    //   { $match: { title: { $regex: /ps5/ } } }
+    // ]);
+    const aggregateQuery = Article.aggregate();
+    const options = {
+      page: req.body.page,
+      limit: limit,
+      sort: { _id: "desc" }
+    };
+    const articles = await Article.aggregatePaginate(aggregateQuery, options);
+
+    return res.status(StatusCodes.OK).json(articles);
+  } catch (err) {
+    if (err) return res.status(StatusCodes.NOT_FOUND).json(err);
+  }
+};
+
 module.exports = {
   addArticle,
   readArticle,
   deleteArticle,
   updateArticle,
-  getPublicArticles
+  getPublicArticles,
+  loadMore,
+  paginate
 };
