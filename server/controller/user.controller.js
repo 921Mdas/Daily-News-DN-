@@ -2,7 +2,6 @@ const User = require("../model/users.model");
 const { StatusCodes } = require("http-status-codes");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { serialize } = require("bson");
 
 const registerUser = async (req, res, next) => {
   try {
