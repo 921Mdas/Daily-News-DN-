@@ -33,7 +33,7 @@ const userSchema = new Schema(
       type: String,
       // create a series of values acceptable to role
       enum: ["user", "admin"],
-      default: "user",
+      default: "admin",
     },
     firstname: {
       type: String,
