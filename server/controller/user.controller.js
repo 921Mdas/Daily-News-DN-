@@ -2,6 +2,7 @@ const User = require("../model/users.model");
 const { StatusCodes } = require("http-status-codes");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const express = require("express");
 
 const registerUser = async (req, res, next) => {
   try {
@@ -18,10 +19,11 @@ const registerUser = async (req, res, next) => {
       email: req.body.email,
       password: req.body.password,
     });
+
     // 3. generate token - user password + secret in the model
     const token = newUser.generateToken();
 
-    res
+    return res
       .cookie("authToken", token)
       .status(StatusCodes.ACCEPTED)
       .send(parseUserDetails(newUser));

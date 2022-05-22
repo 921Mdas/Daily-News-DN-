@@ -84,12 +84,13 @@ const getPublicArticles = async (req, res, next) => {
 const loadMore = async (req, res, next) => {
   try {
     //   {sortBy:"_id",order:"asc", limit:10}
-    // let sortArgs = sortArgsHelper(req.body);
 
-    const article = await Article.find({ status: "public" });
-    //   .sort([[sortArgs.sortBy, sortArgs.order]])
-    //   .skip(sortArgs.skip)
-    //   .limit(sortArgs.limit);
+    let sortArgs = sortArgsHelper(req.body.params.num);
+
+    const article = await Article.find({ status: "public" })
+      .sort([[sortArgs.sortBy, sortArgs.order]])
+      .skip(sortArgs.skip)
+      .limit(sortArgs.limit);
 
     if (!article || article.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({ message: "not found" });

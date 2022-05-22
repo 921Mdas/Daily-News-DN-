@@ -40,11 +40,9 @@ router.post(
 router.get("/status/:id", ctrl.getPublicArticles);
 
 // load more content initially
-<<<<<<< HEAD
+// <<<< go back
+// router.get("/loadmore", ctrl.loadMore);
 router.post("/loadmore", ctrl.loadMore);
-=======
-router.get("/loadmore", ctrl.loadMore);
->>>>>>> 512d03ecaaef8447d2c25019bb6f1704e2bfec41
 
 // pagination
 router.post(

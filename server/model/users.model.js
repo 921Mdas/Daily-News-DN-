@@ -22,41 +22,37 @@ const userSchema = new Schema(
         if (!validator.isEmail(value)) {
           throw new Error("invalid email");
         }
-      }
+      },
     },
     password: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     role: {
       type: String,
       // create a series of values acceptable to role
       enum: ["user", "admin"],
-<<<<<<< HEAD
-      default: "admin"
-=======
       default: "admin",
->>>>>>> 512d03ecaaef8447d2c25019bb6f1704e2bfec41
     },
     firstname: {
       type: String,
       maxlength: 100,
-      trim: true
+      trim: true,
     },
     lastname: {
       type: String,
       maxlength: 100,
-      trim: true
+      trim: true,
     },
     age: {
       type: Number,
       min: 18,
-      max: 50
-    }
+      max: 50,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
   //you can use collection: to give the schema another name in the database
 );

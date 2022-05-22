@@ -23,14 +23,10 @@ const ArticleCard = ({ article }) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="h6">
-            {article?.title}
+            {`${article?.title.substring(0, 32)}...`}
           </Typography>
           <Typography variant="body2" component="p">
-            {`${
-              article.content.length > 300
-                ? article?.content.substring(0, 200)
-                : article?.content.substring(0, 100)
-            }  `}
+            {article.excerpt}
           </Typography>
         </CardContent>
 
@@ -42,7 +38,7 @@ const ArticleCard = ({ article }) => {
             size="small"
             color="primary"
             component={RouterLink}
-            to={`/article/id`}
+            to={`/article/${article._id}`}
           >
             View article
           </Button>

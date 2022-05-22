@@ -25,6 +25,15 @@
   position: relative;
 }
 
+.loadmore_btn {
+  border: solid 1px red;
+  width: 75vw;
+}
+
+.loadmore {
+  border: solid 1px red;
+}
+
 .card_actions {
   @include positionabs(absolute, 85%, 0);
 }

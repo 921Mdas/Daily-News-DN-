@@ -7,6 +7,7 @@ require("dotenv").config();
 const ctrl = require("../../controller/user.controller");
 const { isLoggedIn } = require("../../middleware/auth");
 const { grantAccess } = require("../../middleware/roles");
+const { verifyToken } = require("../../middleware/auth");
 
 // user routes
 // instead of doing router.get or router.post each time, use router.route to chain to the same url

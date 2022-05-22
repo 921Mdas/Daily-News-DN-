@@ -6,6 +6,7 @@ import GoogleFontLoader from "react-google-font-loader";
 import Home from "./Components/Home/Home";
 import Navbar from "./Components/Navbar/Navbar";
 import Layout from "./Hoc/Layout";
+import Auth from "./Components/auth/index.auth";
 
 function RouterComponent() {
   return (
@@ -14,6 +15,7 @@ function RouterComponent() {
         <Navbar />
         <Layout>
           <Routes>
+            <Route path="/auth" element={<Auth />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </Layout>

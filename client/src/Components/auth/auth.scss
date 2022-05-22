@@ -1,0 +1,17 @@
+@import "../../index.scss";
+
+.auth_container {
+  @include flex(center, center, column, 1em);
+}
+
+.user_registration {
+  width: clamp(350px, 30vw, 400px);
+}
+
+.form-group {
+  @include flex("", "", column, 1em);
+}
+
+.auth_actions {
+  @include flex(center, center, column, 1em);
+}
