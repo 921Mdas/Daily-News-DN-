@@ -11,7 +11,7 @@ const cookieParser = require("cookie-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(verifyToken);
-app.use(cors());
+app.use(cors({ credentials: true }));
 app.use(cookieParser());
 require("dotenv").config();
 

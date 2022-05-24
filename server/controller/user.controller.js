@@ -22,11 +22,15 @@ const registerUser = async (req, res, next) => {
 
     // 3. generate token - user password + secret in the model
     const token = newUser.generateToken();
+    // parsed user detail
+    const createdUser = parseUserDetails(newUser);
+    // data sent back to client
+    const data = {
+      token,
+      createdUser,
+    };
 
-    return res
-      .cookie("authToken", token)
-      .status(StatusCodes.ACCEPTED)
-      .send(parseUserDetails(newUser));
+    return res.status(StatusCodes.OK).send(data);
   } catch (err) {
     if (err) console.log("something happened", err);
     return res
@@ -50,14 +54,21 @@ const signIn = async (req, res, next) => {
   // second compare the password
   const compare = await isAUser.comparePassword(req.body.password);
 
-  if (compare) {
+  if (await compare) {
     // if password match, generate the token
-    const token = isAUser.generateToken();
+    const token = await isAUser.generateToken();
+    const AuthUser = await parseUserDetails(isAUser);
+
     // response
+    const userDataAuth = {
+      token,
+      AuthUser,
+    };
+
     return res
-      .cookie("authToken", token)
-      .status(StatusCodes.ACCEPTED)
-      .send(parseUserDetails(isAUser));
+      .cookie("tokenAuth", token)
+      .status(StatusCodes.OK)
+      .send(userDataAuth);
   } else {
     return res
       .status(StatusCodes.NOT_FOUND)
@@ -163,13 +174,14 @@ const updateEmail = async (req, res, next) => {
 // helper functions
 
 const isAuthenticated = async (req, res) => {
-  res.status(200).send(parseUserDetails(req.user));
+  res.status(StatusCodes.OK).send(parseUserDetails(req.user));
 };
 
 const parseUserDetails = function (user) {
   return {
     id: user._id,
     email: user.email,
+    role: user.role,
   };
 };
 

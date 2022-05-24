@@ -56,6 +56,26 @@ res.locals.whatever can help us store decoded value of a token and use it elsewh
 - react toastify needs to be put on a higher component, preferably layout
   -notifications are showed where the APIs are made between back and front (run toast there)
 
+- create an authentication form login signup as a component (on initial load), next use that component on sign in to redirect to home page
+- create API UTIL that can include all reusable functions
+- create component util for reusable components
+- router component file rendered in index is better
+
+## AUTO SIGN IN
+
+- use the token to auto login the user
+- need to set a header that will be received by the backend signin route, verified, decoded, extract user info, find user in the database and send user info back.
+- create a common place to send the token in header over and over each time you want to verify, dont pass it manually
+- use isAuth to render loader or routes on application start
+
+**dynamic Layout**
+
+- useLocation to understand where you are in the app and render specific layouts based on the path
+
+## GUARDING ROUTES
+
+- even when we are not signed in, we can face issues such as changing the url and still accessing the application; solution is
+
 ## PORT ISSUES
 
 force port to end run: npx kill-port 3001
