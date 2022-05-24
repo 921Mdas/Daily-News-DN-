@@ -7,28 +7,55 @@ import {
   REGISTER,
   SIGN_IN,
   GET_CURRENT_USER,
+  SIGN_IN_OK,
+  AUTH_OK,
+  AUTH_NOT_OK,
+  SIGN_OUT,
+  CHANGE_LAYOUT,
 } from "./type";
 
 // context
 const MyContext = React.createContext();
+
+// default user
+export const userDefault = {
+  email: "",
+  _id: "",
+  role: "",
+  age: "",
+  lastname: "",
+  firstname: "",
+};
 
 // reducer
 const reducer = (state, action) => {
   switch (action.type) {
     case GET_ARTICLES:
       return { ...state, articles: action.payload };
-    case GET_CURRENT_USER:
-      console.log(action.payload);
+    case CHANGE_LAYOUT:
+      return { ...state, layout: action.payload };
+    case AUTH_OK:
       return {
         ...state,
+        isAuth: true,
+        currentUser: { ...state.currentUser, ...action.payload },
+      };
+    case AUTH_NOT_OK:
+      return { ...state, isAuth: null, currentUser: userDefault };
+    case SIGN_IN_OK:
+      return {
+        ...state,
+        isAuth: true,
         currentUser: {
-          email: action.payload.email,
-          _id: action.payload.id,
-          role: action.payload.role || "",
-          age: action.payload.age || "",
-          lastname: action.payload.lastname || "",
-          firstname: action.payload.firstname || "",
+          ...state.currentUser,
+          ...action.payload,
         },
+      };
+    case SIGN_OUT:
+      return {
+        ...state,
+        currentUser: userDefault,
+        isAuth: null,
       };
     case LOAD_MORE_ACTION:
       return {
@@ -44,14 +71,9 @@ const reducer = (state, action) => {
 const defaultState = {
   articles: [],
   initSort: { sortBy: "_id", order: "asc", limit: 8 },
-  currentUser: {
-    email: "",
-    _id: "",
-    role: "",
-    age: "",
-    lastname: "",
-    firstname: "",
-  },
+  currentUser: userDefault,
+  isAuth: null,
+  layout: "",
 };
 
 // make error true
@@ -63,7 +85,7 @@ const defaultState = {
 const MyProvider = props => {
   const [state, dispatch] = useReducer(reducer, defaultState);
 
-  console.log("current user", state);
+  console.log(state);
 
   return (
     <MyContext.Provider value={{ state, dispatch }}>

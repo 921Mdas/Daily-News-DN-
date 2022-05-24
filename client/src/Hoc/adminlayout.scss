@@ -1,0 +1,26 @@
+.dashboard {
+  height: 100vh;
+  margin-top: 0px;
+  margin-bottom: 0px !important;
+  max-width: 100%;
+}
+
+.app_container.dash_layout {
+  margin-top: 0px;
+  margin-bottom: 0px !important;
+  max-width: 100%;
+}
+
+.dashboard nav {
+  background: #212121;
+  padding: 0px;
+  border-right: 5px solid #565656;
+}
+
+.dashboard .MuiList-root {
+  color: #fff;
+}
+
+.dashboard .MuiButtonBase-root {
+  border-bottom: 1px solid #313131;
+}

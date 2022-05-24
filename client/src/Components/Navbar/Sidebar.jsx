@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { MyContext } from "../../context/context";
+
 import {
   Drawer,
   List,
@@ -16,8 +18,20 @@ import HomeIcon from "@material-ui/icons/Home";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 
+// signout
+import { USER_SIGN_OUT } from "../../context/ApiUtil";
+import { SIGN_OUT } from "../../context/type";
+
 const Sidebar = () => {
   const [state, setState] = useState(false);
+  const { dispatch } = useContext(MyContext);
+
+  const SigninOut = () => {
+    setState(false);
+    USER_SIGN_OUT();
+    dispatch({ type: SIGN_OUT });
+  };
+
   return (
     <>
       <DehazeIcon className="drawer_btn" onClick={() => setState(true)} />
@@ -58,7 +72,7 @@ const Sidebar = () => {
           <ListItem
             button
             component={RouterLink}
-            to="/auth"
+            to="/"
             onClick={() => setState(false)}
           >
             <ListItemIcon>
@@ -69,8 +83,8 @@ const Sidebar = () => {
           <ListItem
             button
             component={RouterLink}
-            to="/auth"
-            onClick={() => setState(false)}
+            to="/"
+            onClick={() => SigninOut()}
           >
             <ListItemIcon>
               <VpnKeyIcon />

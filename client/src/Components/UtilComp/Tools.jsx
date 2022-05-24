@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import cookie from "react-cookies";
 
 export const NOTIFTYPE = {
   success: "SUCCESS",
@@ -30,4 +31,18 @@ export const showToast = (type, msg) => {
     default:
       return false;
   }
+};
+
+// get token from localstorage
+const getTokenCookie = () => {
+  const savedBrowserToken = localStorage.getItem("tokenAuth");
+  return savedBrowserToken;
+};
+
+// remove token from localstorage on signout
+// export const removeTokenCookie = cookie.remove("");
+
+// set the header with info for axios
+export const getAuthHeader = {
+  headers: { tokenAuth: getTokenCookie() },
 };

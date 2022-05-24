@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { MyContext } from "../../context/context";
@@ -6,14 +7,15 @@ import "./auth.scss";
 import { TextField, Button } from "@material-ui/core";
 
 // urls
-import { REGISTER_USER } from "../../context/ApiUtil";
-import { SIGN_UP_URL } from "../../context/type";
+import { REGISTER_USER, USER_SIGN_IN } from "../../context/ApiUtil";
+import { SIGN_UP_URL, SIGN_IN_URL, AUTH_OK } from "../../context/type";
 
 // this will be a route that will redirect on success
 const Auth = props => {
   const [register, setRegister] = useState(false);
+  const navigate = useNavigate();
   const {
-    state: { currentUser },
+    state: { currentUser, isAuth },
     dispatch,
   } = useContext(MyContext);
 
@@ -37,7 +39,7 @@ const Auth = props => {
         await values;
         REGISTER_USER(SIGN_UP_URL, values, dispatch);
       } else {
-        return;
+        await USER_SIGN_IN(SIGN_IN_URL, values, dispatch);
       }
     } catch (error) {
       console.log(error);
@@ -51,6 +53,12 @@ const Auth = props => {
         ? formik.errors[values]
         : null,
   });
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/home");
+    }
+  }, [handleSubmit]);
 
   return (
     <>

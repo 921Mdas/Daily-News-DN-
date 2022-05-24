@@ -1,8 +1,19 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import cookie from "react-cookies";
 import axios from "axios";
 import { showToast, NOTIFTYPE } from "../Components/UtilComp/Tools";
 import { MyContext } from "./context";
-import { GET_CURRENT_USER } from "./type";
+import { getAuthHeader } from "../Components/UtilComp/Tools";
+import {
+  GET_CURRENT_USER,
+  SIGN_IN_OK,
+  AUTH_OK,
+  AUTH_NOT_OK,
+  SIGN_OUT,
+} from "./type";
+
+import { userDefault } from "./context";
 // articles post request
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
@@ -23,17 +34,24 @@ export const AXIOSPOST = async (url, sort) => {
 };
 const REGISTER_USER = async (url, values, dispatch) => {
   try {
-    const user = await axios.post(
-      url,
-      { withCredentials: true },
-      {
-        email: values.email,
-        password: values.password,
-      }
-    );
-    await showToast(NOTIFTYPE.success, `welcome ${user.data.email}`);
+    const user = await axios.post(url, {
+      email: values.email,
+      password: values.password,
+    });
+
+    // express error feedback is stored on error.response.data.message
+
+    // expected token
+    const {
+      data: { createdUser, token },
+    } = user;
+
+    // store token in localstorage and use it in header for next request or signin to see if user exists
+    // console.log("yey we got the token", token);
+
+    await showToast(NOTIFTYPE.success, `account created ${createdUser.email} `);
     // dispatch
-    await dispatch({ type: GET_CURRENT_USER, payload: user.data });
+    await dispatch({ type: GET_CURRENT_USER, payload: createdUser });
     // update current user
   } catch (error) {
     console.log(error);
@@ -41,8 +59,51 @@ const REGISTER_USER = async (url, values, dispatch) => {
     if (error) throw error;
   }
 };
+const USER_SIGN_IN = async (url, values, dispatch) => {
+  try {
+    const user = await axios.post(url, {
+      email: values.email,
+      password: values.password,
+    });
 
-export { REGISTER_USER };
+    // get token on sign in
+    const userData = user.data.AuthUser;
+    const receivedtToken = await user.data.token;
+
+    localStorage.setItem("tokenAuth", receivedtToken);
+
+    await showToast(NOTIFTYPE.success, `welcome ${userData.email} `);
+    // dispatch
+    await dispatch({ type: SIGN_IN_OK, payload: userData });
+    // authenticate client
+    dispatch({ type: AUTH_OK });
+
+    // update current user in state
+  } catch (error) {
+    console.log(error);
+    showToast(NOTIFTYPE.error, error.response.data.message);
+    if (error) throw error;
+  }
+};
+
+const USER_SIGN_OUT = () => {
+  localStorage.clear();
+};
+
+const AUTOSIGN = async (url, headers, dispatch) => {
+  try {
+    // this is how you add a header
+    const AuthUser = await axios.get(url, headers);
+    const currentUser = AuthUser.data;
+    dispatch({ type: AUTH_OK, payload: currentUser });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: AUTH_NOT_OK });
+    // notification
+  }
+};
+
+export { REGISTER_USER, USER_SIGN_IN, AUTOSIGN, USER_SIGN_OUT };
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< go back
 // export const AXIOSPOST = async (url) => {
