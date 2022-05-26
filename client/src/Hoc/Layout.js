@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Layout = props => {
   return (
-    <Container>
+    <Container fluid>
       {props.children}
       <ToastContainer
         pauseOnFocusLoss

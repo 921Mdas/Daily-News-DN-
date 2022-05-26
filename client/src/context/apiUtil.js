@@ -5,12 +5,14 @@ import axios from "axios";
 import { showToast, NOTIFTYPE } from "../Components/UtilComp/Tools";
 import { MyContext } from "./context";
 import { getAuthHeader } from "../Components/UtilComp/Tools";
+import { setDataLocalStorage } from "../Components/UtilComp/Tools";
 import {
   GET_CURRENT_USER,
   SIGN_IN_OK,
   AUTH_OK,
   AUTH_NOT_OK,
   SIGN_OUT,
+  DELETE_ARTICLE_URL,
 } from "./type";
 
 import { userDefault } from "./context";
@@ -23,12 +25,14 @@ export const AXIOSPOST = async (url, sort) => {
       params: { num: sort },
     });
     const data = await response.data;
-    showToast(NOTIFTYPE.success, "successful API request");
+    // console.log("articles received", data);
+    showToast(NOTIFTYPE.success, "api success!");
+    // setDataLocalStorage("articles", data);
     return data;
   } catch (error) {
     // link between front and back is where to show notifs
-    showToast(NOTIFTYPE.error, "oops something went wrong");
-    console.log("error happening here", error);
+    showToast(NOTIFTYPE.error, "Connection failed");
+    console.log("Api request", error);
     if (error) throw error;
   }
 };
@@ -40,7 +44,6 @@ const REGISTER_USER = async (url, values, dispatch) => {
     });
 
     // express error feedback is stored on error.response.data.message
-
     // expected token
     const {
       data: { createdUser, token },
@@ -54,8 +57,8 @@ const REGISTER_USER = async (url, values, dispatch) => {
     await dispatch({ type: GET_CURRENT_USER, payload: createdUser });
     // update current user
   } catch (error) {
-    console.log(error);
-    showToast(NOTIFTYPE.error, "oops couldnt register");
+    console.log("registration error", error);
+    showToast(NOTIFTYPE.error, error.response.data.message);
     if (error) throw error;
   }
 };
@@ -68,15 +71,16 @@ const USER_SIGN_IN = async (url, values, dispatch) => {
 
     // get token on sign in
     const userData = user.data.AuthUser;
-    const receivedtToken = await user.data.token;
+    const receivedToken = await user.data.token;
 
-    localStorage.setItem("tokenAuth", receivedtToken);
+    if (receivedToken) {
+      await localStorage.setItem("tokenAuth", receivedToken);
+    }
 
     await showToast(NOTIFTYPE.success, `welcome ${userData.email} `);
     // dispatch
     await dispatch({ type: SIGN_IN_OK, payload: userData });
     // authenticate client
-    dispatch({ type: AUTH_OK });
 
     // update current user in state
   } catch (error) {
@@ -90,20 +94,52 @@ const USER_SIGN_OUT = () => {
   localStorage.clear();
 };
 
-const AUTOSIGN = async (url, headers, dispatch) => {
+// const AUTOSIGN = async (url, headers, dispatch) => {
+//   try {
+//     // this is how you add a header
+//     const AuthUser = await axios.get(url, headers);
+//     const currentUser = AuthUser.data;
+//     dispatch({ type: AUTH_OK, payload: currentUser });
+//   } catch (err) {
+//     console.log(err);
+//     dispatch({ type: SIGN_OUT });
+//     // notification
+//   }
+// };
+
+const CREATE_ARTICLE = async (url, formdata, headers) => {
+  // verify token on every activity
   try {
-    // this is how you add a header
-    const AuthUser = await axios.get(url, headers);
-    const currentUser = AuthUser.data;
-    dispatch({ type: AUTH_OK, payload: currentUser });
-  } catch (err) {
-    console.log(err);
-    dispatch({ type: AUTH_NOT_OK });
-    // notification
+    const response = await axios.post(url, formdata, { headers });
+    const data = await response.data;
+    showToast(NOTIFTYPE.success, "Success!");
+    return data;
+  } catch (error) {
+    // link between front and back is where to show notifs
+    showToast(NOTIFTYPE.error, error.response.data.message);
+    console.log("error happening here", error);
+    if (error) throw error;
   }
 };
 
-export { REGISTER_USER, USER_SIGN_IN, AUTOSIGN, USER_SIGN_OUT };
+const DELETE_ARTICLE = async id => {
+  try {
+    await axios.post(`${DELETE_ARTICLE_URL}${id}`);
+    showToast(NOTIFTYPE.success, "Success!");
+  } catch (error) {
+    showToast(NOTIFTYPE.error, error.response.data.message);
+    console.log("delete error", error);
+  }
+};
+
+export {
+  REGISTER_USER,
+  USER_SIGN_IN,
+  // AUTOSIGN,
+  USER_SIGN_OUT,
+  CREATE_ARTICLE,
+  DELETE_ARTICLE,
+};
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< go back
 // export const AXIOSPOST = async (url) => {

@@ -1,17 +1,110 @@
-@mixin positionabs($abs, $top, $left) {
-  position: $abs;
-  top: $top;
-  $left: $left;
+@import "../../index.scss";
+
+// header
+.home_container {
+  @include flex(center, center, column, 1em);
+  margin-bottom: 10px;
 }
+
+.home_header {
+  width: 100%;
+  height: 50vh;
+  background-image: url("../../multimedia/obr4.jpeg");
+  background-size: cover;
+  background-position: 20% 55%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.home_header_prompt {
+  @include flex(center, center, column, 1em);
+  height: 60%;
+  width: 50%;
+  @include positionabscenter();
+  text-align: center;
+  top: 25%;
+  @include Glass();
+  border-radius: 10px;
+
+  p {
+    font-size: 20px;
+  }
+
+  button {
+    @extend .button_reset;
+    padding: 6px 10px;
+    background: var(--blue);
+    color: var(--deadwhite);
+    border: none;
+    @include boxShadow(rgba(68, 85, 180, 0.342));
+  }
+}
+
+.home_toggle_onboarding {
+  @extend .button_reset;
+  border: none;
+  background: none;
+  color: var(--blue);
+  font-size: 20px;
+  @include positionabs(absolute, 5%, 96%);
+}
+.home_loadmore_icon {
+  color: var(--deadwhite);
+}
+
+.home_taskbar {
+  background: var(--bluelight);
+  width: 100%;
+  @include flex(space-between, center, row, 1em);
+  .filler {
+    width: 80%;
+    height: 8vh;
+  }
+
+  .taskbar_icons {
+    font-size: var(--taskicon);
+    width: 20%;
+    color: var(--darkgreytransp);
+
+    @include flex(center, center, row, 1em);
+
+    .task_icon {
+      cursor: pointer;
+      // position: relative;
+      transition: all 0.5s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+        color: var(--blue);
+      }
+    }
+  }
+}
+
+.home_start_tour {
+  color: var(--darkgrey);
+  width: 50vw;
+  text-align: center;
+  span {
+    color: var(--blue);
+    cursor: pointer;
+  }
+}
+
+// card
 
 .article_card {
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-template-rows: 450px;
   grid-auto-rows: max-content;
   gap: 1em;
+  overflow-y: scroll;
+  padding: 1em;
+  border: solid 1px var(--litegrey);
+  border-radius: 5px;
 }
 
 .card_container {
@@ -23,15 +116,21 @@
 
 .card_component {
   position: relative;
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    background: var(--litegrey);
+    cursor: pointer;
+  }
 }
 
 .loadmore_btn {
-  border: solid 1px red;
   width: 75vw;
 }
 
-.loadmore {
-  border: solid 1px red;
+.loadmore_icon {
+  font-size: 20px;
+  font-weight: bolder;
 }
 
 .card_actions {

@@ -24,7 +24,8 @@ import { SIGN_OUT } from "../../context/type";
 
 const Sidebar = () => {
   const [state, setState] = useState(false);
-  const { dispatch } = useContext(MyContext);
+  const { dispatch, state: appState } = useContext(MyContext);
+  const { isAuth } = appState;
 
   const SigninOut = () => {
     setState(false);
@@ -68,43 +69,47 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText primary="Contact" />
           </ListItem>
-
-          <ListItem
-            button
-            component={RouterLink}
-            to="/"
-            onClick={() => setState(false)}
-          >
-            <ListItemIcon>
-              <VpnKeyIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sign in" />
-          </ListItem>
-          <ListItem
-            button
-            component={RouterLink}
-            to="/"
-            onClick={() => SigninOut()}
-          >
-            <ListItemIcon>
-              <VpnKeyIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sign out" />
-          </ListItem>
+          {isAuth ? (
+            <ListItem
+              button
+              component={RouterLink}
+              to="/"
+              onClick={() => SigninOut()}
+            >
+              <ListItemIcon>
+                <VpnKeyIcon />
+              </ListItemIcon>
+              <ListItemText primary="Sign out" />
+            </ListItem>
+          ) : (
+            <ListItem
+              button
+              component={RouterLink}
+              to="/"
+              onClick={() => setState(false)}
+            >
+              <ListItemIcon>
+                <VpnKeyIcon />
+              </ListItemIcon>
+              <ListItemText primary="Sign in" />
+            </ListItem>
+          )}
         </List>
         <Divider />
         <List>
-          <ListItem
-            button
-            component={RouterLink}
-            to="/dashboard"
-            onClick={() => setState(false)}
-          >
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
+          {isAuth ? (
+            <ListItem
+              button
+              component={RouterLink}
+              to="/dashboard"
+              onClick={() => setState(false)}
+            >
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+            </ListItem>
+          ) : null}
         </List>
       </Drawer>
     </>

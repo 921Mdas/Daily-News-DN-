@@ -1,11 +1,130 @@
 @import "../../index.scss";
 
 .auth_container {
-  @include flex(center, center, column, 1em);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 100%;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  grid-auto-rows: 100%;
+  width: 100%;
+  height: 100vh;
+
+  // slider
+
+  .registration_slider_section {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+
+    .reg_images {
+      width: inherit;
+      height: inherit;
+      position: relative;
+    }
+
+    .reg_dots-container {
+      @include positionabscenter();
+      top: 70%;
+    }
+
+    .reg_slider_dot {
+      @extend .button_reset;
+      border: solid 1px var(--deadwhite);
+      width: 50px;
+      height: 10px;
+      margin-right: 5px;
+    }
+
+    .active {
+      background: var(--deadwhite);
+    }
+
+    .overlay {
+      width: 100%;
+      height: 100%;
+      background: var(--darkgreytransp);
+      position: absolute;
+    }
+
+    .reg_action_btns {
+      @include positionabs(absolute, 85%, 85%);
+
+      width: inherit;
+      height: 8vh;
+      z-index: 2;
+      @include flex(center, center, row, 1em);
+    }
+
+    .reg_slides_btn {
+      appearance: none;
+      background: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: solid 1px var(--deadwhite);
+      color: var(--deadwhite);
+    }
+
+    .reg_img_content3 {
+      width: inherit;
+      height: inherit;
+      position: absolute;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .reg_content_headline,
+    .reg_page_author {
+      position: absolute;
+    }
+    .reg_content_headline {
+      color: var(--deadwhite);
+      @include positionabscenter();
+      width: 70%;
+      z-index: 1;
+    }
+
+    .reg_slider_img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .reg_page_author {
+      @include positionabs(absolute, 85%, 5%);
+      color: var(--deadwhite);
+    }
+  }
+
+  // login page
+
+  .registration_section {
+    padding: 1em;
+    text-align: center;
+    @include flex(center, space-between, column, 1em);
+    height: 100%;
+
+    .login_doodle_img {
+      width: 50%;
+      object-fit: cover;
+    }
+
+    .login_title {
+      color: var(--darkgrey);
+    }
+    .login_page_content {
+      @include flex("", "", column, 1em);
+    }
+  }
+}
+
+.login-googleBtn {
+  @include flex(center, "", row, 0em);
 }
 
 .user_registration {
-  width: clamp(350px, 30vw, 400px);
+  width: clamp(350px, 30vw, 100%);
 }
 
 .form-group {
@@ -13,5 +132,5 @@
 }
 
 .auth_actions {
-  @include flex(center, center, column, 1em);
+  @include flex(center, "", column, 1em);
 }

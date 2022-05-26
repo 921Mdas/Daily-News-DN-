@@ -1,3 +1,4 @@
+// Use Reducer commands
 export const GET_ARTICLES = "GET_ARTICLES";
 export const LOAD_MORE_ACTION = "LOAD_MORE";
 export const ERROR_GLOBAL = "ERROR_GLOBAL";
@@ -12,6 +13,15 @@ export const CHANGE_LAYOUT = "CHANGE_LAYOUT";
 
 // API URLS
 export const LOADMORE_URL = "http://localhost:3001/api/articles/loadmore";
+export const DELETE_ARTICLE_URL =
+  "http://localhost:3001/api/articles/admin/delete/";
 export const SIGN_UP_URL = "http://localhost:3001/api/users/register";
 export const SIGN_IN_URL = "http://localhost:3001/api/users/signin";
 export const AUTO_SIGN_URL = "http://localhost:3001/api/users/isauth";
+export const CREATE_ARTICLE_URL =
+  "http://localhost:3001/api/articles/admin/addarticles";
+
+// local Storage item names
+export const ARTICLES_STORED = "articles";
+
+// check javascript enums

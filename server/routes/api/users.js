@@ -16,20 +16,20 @@ router.post("/register", ctrl.registerUser);
 router.post("/signin", ctrl.signIn);
 router.get(
   "/profile",
-  isLoggedIn,
-  grantAccess("readOwn", "profile"),
+  // isLoggedIn,
+  // grantAccess("readOwn", "profile"),
   ctrl.userProfile
 );
 router.post(
   "/profile",
-  isLoggedIn,
-  grantAccess("updateOwn", "profile"),
+  // isLoggedIn,
+  // grantAccess("updateOwn", "profile"),
   ctrl.updateUserProfile
 );
 router.post(
   "/update_email",
-  isLoggedIn,
-  grantAccess("updateOwn", "profile"),
+  // isLoggedIn,
+  // grantAccess("updateOwn", "profile"),
   ctrl.updateEmail
 );
 

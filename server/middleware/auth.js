@@ -14,6 +14,8 @@ exports.verifyToken = async function (req, res, next) {
       // we can then store this information inside a res.local.whaterver available later
       res.locals.userData = await User.findById(_id);
 
+      // console.log("verification success", accessToken, email);
+
       next();
     } else {
       next();
@@ -21,17 +23,31 @@ exports.verifyToken = async function (req, res, next) {
   } catch (error) {
     console.log("failed to form token", error);
     if (error)
-      res
+      return res
         .status(StatusCodes.NOT_FOUND)
         .json({ message: "bad token", error: error });
   }
 };
 
-exports.isLoggedIn = (req, res, next) => {
-  const user = res.locals.userData;
-  req.user = user;
-  if (!user) {
-    return res.status(StatusCodes.NOT_FOUND).json({ message: "not logged in" });
+exports.isLoggedIn = async (req, res, next) => {
+  try {
+    const user = res.locals.userData;
+    req.user = user;
+    // console.log("token received, user found:", user);
+
+    // if (!user) {
+    //   return res
+    //     .status(StatusCodes.NOT_FOUND)
+    //     .json({ message: "couldn't authenticate" });
+    // } else {
+    //   next();
+    // }
+  } catch (err) {
+    if (err)
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "not logged in" });
   }
-  next();
+
+  // next();
 };

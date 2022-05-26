@@ -4,6 +4,7 @@ const { roles } = require("../config/roles");
 exports.grantAccess = function (action, resource) {
   return async (req, res, next) => {
     try {
+      console.log("who are we granting?", req.user);
       // middlewares can pass values to the next function through the req keyword
       // req.user or req.name, etc.
       // const user = res.locals.userData;

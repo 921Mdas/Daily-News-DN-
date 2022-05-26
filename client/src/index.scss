@@ -1,7 +1,79 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --blue: rgb(68, 84, 180);
+  --yellow: rgb(255, 226, 147);
+  --bluelight: rgba(204, 211, 250, 0.37);
+  --darkgrey: rgb(53, 54, 66);
+  --litegrey: rgb(228, 230, 255);
+  --darkgreytransp: rgba(53, 54, 66, 0.589);
+  --deadwhite: #ededed;
+  --cardicon: 25px;
+  --taskicon: 35px;
+}
+
 @mixin flex($jc, $ai, $fd, $gap) {
   display: flex;
   justify-content: $jc;
   align-items: $ai;
   flex-direction: $fd;
   gap: $gap;
+}
+
+@mixin boxShadow($col) {
+  box-shadow: 0 4px 8px -1px $col;
+}
+
+@mixin Glass() {
+  background: rgba(255, 255, 255, 0.103);
+  box-shadow: 0 8px 32px 0 rgba(25, 25, 26, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@mixin positionabs($abs, $top, $left) {
+  position: $abs;
+  top: $top;
+  left: $left;
+}
+
+@mixin positionabscenter() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin circle($w, $h) {
+  width: $w;
+  height: $h;
+  border-radius: 50%;
+}
+@mixin square($w, $h) {
+  width: $w;
+  height: $h;
+  border-radius: 10%;
+}
+
+.button_reset {
+  background: none;
+  border-radius: 3px;
 }

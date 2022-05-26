@@ -74,7 +74,18 @@ res.locals.whatever can help us store decoded value of a token and use it elsewh
 
 ## GUARDING ROUTES
 
-- even when we are not signed in, we can face issues such as changing the url and still accessing the application; solution is
+- even when we are not signed in, we can face issues such as changing the url and still accessing the application; solution is authentication HOC page
+
+- state persistence can be a real issue when changing pages
+- that's where redux comes in i guess localstorage in the meantime
+
+## ARTICLES CRUD
+
+## Additional features
+
+- languages translation (i18n - internationalization (translation))
+
+\*\* learn to make API calls in the context file
 
 ## PORT ISSUES
 

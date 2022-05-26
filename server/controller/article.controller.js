@@ -17,9 +17,10 @@ const addArticle = async (req, res, next) => {
       status: req.body.status,
     });
     const producedArticle = await article;
-    res.status(StatusCodes.OK).json(producedArticle);
+    // console.log("created article", producedArticle);
+    return res.status(StatusCodes.OK).send(producedArticle);
   } catch (err) {
-    if (err) res.status(StatusCodes.NOT_ACCEPTABLE).json(err);
+    if (err) console.log(err);
   }
 };
 
@@ -39,11 +40,13 @@ const readArticle = async (req, res, next) => {
   }
 };
 
-const deleteArticle = async (req, res, next) => {
+const deleteArticle = (req, res, next) => {
   const articleID = req.params.id;
   try {
-    const article = await Article.deleteOne({ _id: articleID });
-    return res.status(StatusCodes.OK).send(`article deleted`);
+    Article.findByIdAndRemove({ _id: articleID }, (err, doc) => {
+      if (err) throw err;
+      return res.status(StatusCodes.OK).send(`article deleted`);
+    });
   } catch (err) {
     if (err) return res.status(StatusCodes.NOT_FOUND).json(err);
   }
@@ -74,17 +77,16 @@ const getPublicArticles = async (req, res, next) => {
     if (!article || article.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({ message: "not found" });
     }
-    res.status(StatusCodes.OK).send(article);
+    return res.status(StatusCodes.OK).send(article);
   } catch (err) {
     if (err) return res.status(StatusCodes.NOT_FOUND).json(err);
   }
 };
 
-// load initial content
+// load initial content - check √
 const loadMore = async (req, res, next) => {
   try {
     //   {sortBy:"_id",order:"asc", limit:10}
-
     let sortArgs = sortArgsHelper(req.body.params.num);
 
     const article = await Article.find({ status: "public" })
@@ -95,7 +97,7 @@ const loadMore = async (req, res, next) => {
     if (!article || article.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({ message: "not found" });
     }
-    res.status(StatusCodes.OK).json(article);
+    return res.status(StatusCodes.OK).json(article);
   } catch (err) {
     if (err) return res.status(StatusCodes.NOT_FOUND).json(err);
   }

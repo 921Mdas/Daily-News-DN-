@@ -1,5 +1,5 @@
-import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   Card,
   CardMedia,
@@ -11,8 +11,23 @@ import {
   Button,
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import { AiFillDelete } from "react-icons/ai";
+import { BsFillEyeFill } from "react-icons/bs";
+import { FcDownload } from "react-icons/fc";
+import { DELETE_ARTICLE } from "../../context/ApiUtil";
+import "./utilcomp.scss";
 
-const ArticleCard = ({ article }) => {
+const ArticleCard = ({ article, idx, content }) => {
+  const handleDelete = async id => {
+    DELETE_ARTICLE(id);
+    // put use effect where the action is happening or no trigger
+    // create a new get articles dispatch
+  };
+
+  useEffect(() => {
+    console.log("delete just happened", content.length);
+  }, [handleDelete]);
+
   if (article) {
     return (
       <Card className="card_component">
@@ -23,7 +38,9 @@ const ArticleCard = ({ article }) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="h6">
-            {`${article?.title.substring(0, 32)}...`}
+            <RouterLink to={`/article/${article._id}`}>
+              {`${article?.title.substring(0, 32)}...`}
+            </RouterLink>
           </Typography>
           <Typography variant="body2" component="p">
             {article.excerpt}
@@ -31,17 +48,29 @@ const ArticleCard = ({ article }) => {
         </CardContent>
 
         <CardActions disableSpacing className="card_actions">
-          <IconButton>
+          <button className="card_likeicon action_card_icon">
             <FavoriteIcon />
-          </IconButton>
-          <Button
+          </button>
+          <RouterLink
             size="small"
             color="primary"
             component={RouterLink}
             to={`/article/${article._id}`}
+            className="card_viewicon action_card_icon"
           >
-            View article
-          </Button>
+            <BsFillEyeFill />
+          </RouterLink>
+          <button
+            size="small"
+            color="primary"
+            component={RouterLink}
+            to={`/article/${article._id}`}
+            className="card_viewicon action_card_icon"
+            onClick={() => handleDelete(article._id)}
+          >
+            <AiFillDelete className="card_delete_icon action_card_icon" />
+          </button>
+          <p>Reach {32 * idx} K</p>
         </CardActions>
       </Card>
     );
@@ -82,4 +111,4 @@ const ArticleCard = ({ article }) => {
   }
 };
 
-export default ArticleCard;
+export default React.memo(ArticleCard);

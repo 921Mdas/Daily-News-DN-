@@ -1,4 +1,5 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // actions
 import {
@@ -34,11 +35,13 @@ const reducer = (state, action) => {
       return { ...state, articles: action.payload };
     case CHANGE_LAYOUT:
       return { ...state, layout: action.payload };
+    case GET_CURRENT_USER:
+      return { ...state, registered: true };
     case AUTH_OK:
       return {
         ...state,
         isAuth: true,
-        currentUser: { ...state.currentUser, ...action.payload },
+        // currentUser: { ...state.currentUser, ...action.payload },
       };
     case AUTH_NOT_OK:
       return { ...state, isAuth: null, currentUser: userDefault };
@@ -85,7 +88,7 @@ const defaultState = {
 const MyProvider = props => {
   const [state, dispatch] = useReducer(reducer, defaultState);
 
-  console.log(state);
+  // console.log("verifying if we are still logged in", state.isAuth);
 
   return (
     <MyContext.Provider value={{ state, dispatch }}>

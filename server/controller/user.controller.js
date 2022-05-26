@@ -14,12 +14,10 @@ const registerUser = async (req, res, next) => {
     }
     // 1.creating the model (hash password) in model
     // note you can handpick what to register first and complete later on the profile
-
     const newUser = await User.create({
       email: req.body.email,
       password: req.body.password,
     });
-
     // 3. generate token - user password + secret in the model
     const token = newUser.generateToken();
     // parsed user detail
@@ -35,7 +33,7 @@ const registerUser = async (req, res, next) => {
     if (err) console.log("something happened", err);
     return res
       .status(StatusCodes.NOT_ACCEPTABLE)
-      .json({ messsage: "couldnt save user.controller 18", error: err });
+      .send("couldnt register, try later");
   }
   // send email
   // save...send token with cookie
@@ -174,7 +172,7 @@ const updateEmail = async (req, res, next) => {
 // helper functions
 
 const isAuthenticated = async (req, res) => {
-  res.status(StatusCodes.OK).send(parseUserDetails(req.user));
+  return res.status(StatusCodes.OK).send(parseUserDetails(req.user));
 };
 
 const parseUserDetails = function (user) {

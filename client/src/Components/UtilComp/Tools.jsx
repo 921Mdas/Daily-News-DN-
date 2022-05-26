@@ -39,6 +39,16 @@ const getTokenCookie = () => {
   return savedBrowserToken;
 };
 
+//
+
+export function getDataLocalStorage(dataname) {
+  const data = JSON.parse(localStorage.getItem(dataname));
+  return data;
+}
+export function setDataLocalStorage(dataname) {
+  const data = localStorage.getItem(JSON.stringify(dataname));
+}
+
 // remove token from localstorage on signout
 // export const removeTokenCookie = cookie.remove("");
 

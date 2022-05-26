@@ -1,0 +1,210 @@
+@import "../../index.scss";
+
+.navigation_bar {
+  position: relative;
+}
+
+.logo-icon {
+  margin-right: 0.3em;
+  font-size: 35px;
+  color: var(--blue);
+}
+
+.nav_personalInfo {
+  @include flex(center, center, "row", 1em);
+  position: absolute;
+  right: 5%;
+
+  p {
+    align-self: flex-end;
+    height: 100%;
+  }
+
+  .nav_personicon {
+    color: var(--deadwhite);
+    font-size: 20px;
+  }
+
+  .nav_avatar {
+    @include circle(50px, 50px);
+    @include flex(center, center, "", 0);
+    background-color: var(--darkgreytransp);
+  }
+}
+
+//Footer
+
+.footer_section {
+  margin: 0 15px;
+  background: var(--blue);
+}
+
+.footerLinks {
+  display: grid;
+  height: 200px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.footerLinks h3 {
+  color: var(--yellow);
+  text-align: center;
+}
+
+.general {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footerLinks ul {
+  height: 100px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.footerLinks ul li {
+  list-style: none;
+  font-size: 20px;
+  color: var(--litegrey);
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.footerLinks ul li:hover {
+  color: white;
+}
+
+.social_links {
+  width: 100%;
+  height: 200px;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+  color: var(--litegrey);
+}
+
+.socialIcons,
+.sponsorIcons {
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.socialIcons:nth-child(n):hover,
+.sponsorIcons:nth-child(n):hover {
+  color: white;
+}
+
+.sponsors {
+  display: flex;
+  justify-content: center;
+  gap: 5em;
+  margin-top: 2em;
+  color: var(--litegrey);
+}
+
+.socialIcons,
+.sponsorIcons {
+  font-size: 40px;
+}
+
+.moreContent {
+  height: 600px;
+  margin-top: 2em;
+}
+
+.moreContent .description {
+  color: whitesmoke;
+  padding: 1em;
+}
+
+.description h3 {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.description p {
+  font-size: 25px;
+}
+
+.description {
+  height: 300px;
+}
+
+.preview {
+  text-align: center;
+}
+.preview,
+.description {
+  width: 650px;
+}
+
+.concerts {
+  width: 100%;
+  border: solid 1px rgba(131, 131, 131, 0.329);
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 10px;
+}
+
+.concerts h1 {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.concert-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.concert {
+  width: 500px;
+  height: 250px;
+  border-radius: 10px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease-in-out;
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  border: solid 1px rgba(255, 255, 255, 0.37);
+}
+
+.concert h1 {
+  position: absolute;
+  bottom: 0;
+  text-transform: capitalize;
+  left: 2%;
+}
+
+.concert a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.37);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.concert a:hover {
+  color: white;
+}
+
+.concert:nth-child(n):hover {
+  background-size: 120%;
+}
