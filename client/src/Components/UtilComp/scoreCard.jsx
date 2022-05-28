@@ -11,6 +11,15 @@ import {
 import MovieIcon from "@material-ui/icons/Movie";
 import PersonIcon from "@material-ui/icons/Person";
 import StarIcon from "@material-ui/icons/Star";
+import PreviewIcon from "@mui/icons-material/Preview";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
+import pub1 from "../../multimedia/pub1.png";
+import pub2 from "../../multimedia/pub2.png";
+import pub5 from "../../multimedia/pub5.png";
+import pub4 from "../../multimedia/pub4.png";
+
+const publications = [pub1, pub2];
 
 const ScoreCard = ({ current }) => {
   return (
@@ -23,7 +32,7 @@ const ScoreCard = ({ current }) => {
           </Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary="Our score"
+          primary="Views"
           secondary={current.score}
           className="rating"
         />
@@ -58,8 +67,21 @@ const ScoreCard = ({ current }) => {
             <MovieIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary="Director" secondary={current.director} />
+        <ListItemText primary="Author" secondary={current.director} />
       </ListItem>
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <CheckCircleIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Published By" />
+      </ListItem>
+      <div className="pubs">
+        {publications.map((img, idx) => {
+          return <img key={idx} src={img} alt="" className="pub_avatar" />;
+        })}
+      </div>
     </List>
   );
 };

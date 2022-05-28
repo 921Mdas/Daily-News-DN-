@@ -20,7 +20,7 @@ import doodle2 from "../../multimedia/doodle2.png";
 import doodle3 from "../../multimedia/doodle3.png";
 
 // urls
-import { REGISTER_USER, USER_SIGN_IN } from "../../context/ApiUtil";
+import { REGISTER_USER, USER_SIGN_IN } from "../../context/apiUtil";
 import { SIGN_UP_URL, SIGN_IN_URL, AUTH_OK } from "../../context/type";
 
 const SliderData = [
@@ -178,6 +178,9 @@ const Auth = props => {
 
         <div className="registration_section">
           <div className="login_page_content">
+            <div>
+              <SiDesignernews className="welcome_logo_show" />
+            </div>
             <h3 className="login_title">
               {register ? `Welcome` : "Welcome Back"}
             </h3>

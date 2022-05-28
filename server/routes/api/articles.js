@@ -24,6 +24,19 @@ router.get(
 );
 
 router.post(
+  "/admin/like/:id",
+  // isLoggedIn,
+  // grantAccess("readOwn", "article"),
+  ctrl.likeArticle
+);
+router.get(
+  "/admin/like/:id",
+  // isLoggedIn,
+  // grantAccess("readOwn", "article"),
+  ctrl.getLikedArticle
+);
+
+router.post(
   "/admin/delete/:id",
   // isLoggedIn,
   // grantAccess("deleteOwn", "article"),
@@ -44,6 +57,9 @@ router.get("/status/:id", ctrl.getPublicArticles);
 // <<<< go back
 // router.get("/loadmore", ctrl.loadMore);
 router.post("/loadmore", ctrl.loadMore);
+
+// get all articles
+router.get("/content", ctrl.getArticles);
 
 // pagination
 router.post(

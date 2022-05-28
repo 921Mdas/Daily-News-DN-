@@ -19,7 +19,7 @@ import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 
 // signout
-import { USER_SIGN_OUT } from "../../context/ApiUtil";
+import { USER_SIGN_OUT } from "../../context/apiUtil";
 import { SIGN_OUT } from "../../context/type";
 
 const Sidebar = () => {

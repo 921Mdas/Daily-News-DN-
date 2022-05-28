@@ -16,7 +16,7 @@ import React, { useState, useEffect, useRef } from "react";
 import AdminLayout from "../../../Hoc/AdminLayout";
 import { useFormik, FieldArray, FormikProvider } from "formik";
 import { CREATE_ARTICLE_URL } from "../../../context/type";
-import { CREATE_ARTICLE } from "../../../context/ApiUtil";
+import { CREATE_ARTICLE } from "../../../context/apiUtil";
 import { getAuthHeader } from "../../UtilComp/Tools";
 import WYSIWYG from "./WYSWYG";
 
@@ -26,7 +26,6 @@ import AddIcon from "@material-ui/icons/Add";
 const AddArticle = props => {
   return (
     <AdminLayout section="Add article">
-      add article
       <ArticleForm />
     </AdminLayout>
   );
@@ -54,11 +53,9 @@ const ArticleForm = () => {
   const handleEditorState = state => {
     formik.setFieldValue("content", state, true);
   };
-
   const handleEditorBlur = blur => {
     setEditorBlur(true);
   };
-
   const errorHelper = (formik, values) => ({
     error: formik.errors[values] && formik.touched[values] ? true : false,
     helperText:
@@ -80,7 +77,7 @@ const ArticleForm = () => {
   };
   const actorsValue = useRef("");
   const formik = useFormik({
-    // enableReinitialize: true,
+    enableReinitialize: true,
     initialValues: formValues,
     validationSchema: validation,
     onSubmit: (values, { resetForm }) => {
@@ -120,18 +117,6 @@ const ArticleForm = () => {
           rows={4}
         />
       </div>
-      {/* <div className="form-group">
-        <TextField
-          style={{ width: "100%" }}
-          name="content"
-          label="Enter content"
-          variant="outlined"
-          {...formik.getFieldProps("content")}
-          {...errorHelper(formik, "content")}
-          multiline
-          rows={5}
-        />
-      </div> */}
       <div className="form-group">
         <WYSIWYG
           setEditorState={state => handleEditorState(state)}
@@ -149,8 +134,8 @@ const ArticleForm = () => {
         />
       </div>
 
-      <Divider className="mt-3 mb-3" />
-      <h5>Movie data and score</h5>
+      <Divider className="mt-3 mb-3 dash_wy_divider" />
+      <h5 className="dash_wy_headline">Movie data and score</h5>
       <div className="form-group">
         <TextField
           style={{ width: "100%" }}
@@ -163,7 +148,7 @@ const ArticleForm = () => {
       </div>
 
       <FormikProvider value={formik}>
-        <h5>Add the actors:</h5>
+        <h5 className="dash_wy_headline">Add the actors:</h5>
         <FieldArray
           name="actors"
           render={arrayhelpers => (
@@ -217,7 +202,7 @@ const ArticleForm = () => {
       </div>
 
       <FormControl variant="outlined">
-        <h5>Select a status</h5>
+        <h5 className="dash_wy_headline">Select a status</h5>
         <Select
           name="status"
           {...formik.getFieldProps("status")}
@@ -234,7 +219,7 @@ const ArticleForm = () => {
         ) : null}
       </FormControl>
 
-      <Divider className="mt-3 mb-3" />
+      <Divider className="mt-3 mb-3 dash_wy_divider" />
       <Button
         variant="contained"
         color="primary"

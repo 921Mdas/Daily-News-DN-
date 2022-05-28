@@ -86,6 +86,8 @@ res.locals.whatever can help us store decoded value of a token and use it elsewh
 - languages translation (i18n - internationalization (translation))
 
 \*\* learn to make API calls in the context file
+// link between front and back is where to show notifs
+// for delete make sure delete useEffect is watching state / one liner context relation state
 
 ## PORT ISSUES
 

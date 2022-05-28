@@ -104,6 +104,7 @@
     text-align: center;
     @include flex(center, space-between, column, 1em);
     height: 100%;
+    position: relative;
 
     .login_doodle_img {
       width: 50%;
@@ -133,4 +134,27 @@
 
 .auth_actions {
   @include flex(center, "", column, 1em);
+}
+
+.welcome_logo_show {
+  font-size: 100px;
+  @include positionabs(absolute, 15%, 50%);
+  transform: translate(-50%, -50%);
+  color: var(--blue);
+  animation: changeLogo 1s ease-in-out 1 forwards;
+  transform: translateY(0%);
+}
+
+@keyframes changeLogo {
+  0% {
+    opacity: 0;
+    @include positionabs(absolute, 15%, 50%);
+    transform: translate(-50%, -40%);
+  }
+
+  100% {
+    opacity: 1;
+    @include positionabs(absolute, 15%, 50%);
+    transform: translate(-50%, -50%);
+  }
 }

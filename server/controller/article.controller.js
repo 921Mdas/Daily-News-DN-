@@ -1,9 +1,23 @@
 const express = require("express");
 const { StatusCodes } = require("http-status-codes");
 const Article = require("../model/article.model");
+const User = require("../model/users.model");
 const { sortArgsHelper } = require("../config/helper");
 const { options } = require("../routes/api/articles");
 const { Aggregate } = require("mongoose");
+
+const getArticles = async (req, res, next) => {
+  try {
+    const articles = await Article.find({});
+    const content = await articles;
+    return res.status(StatusCodes.OK).send(content);
+  } catch (err) {
+    if (err) console.log("getting articles", err);
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .send("no articles found!, try later");
+  }
+};
 
 const addArticle = async (req, res, next) => {
   try {
@@ -49,6 +63,42 @@ const deleteArticle = (req, res, next) => {
     });
   } catch (err) {
     if (err) return res.status(StatusCodes.NOT_FOUND).json(err);
+  }
+};
+
+const likeArticle = async (req, res, next) => {
+  try {
+    const articleID = req.params.id;
+    const userID = req.body.userID;
+    const likedArticle = await Article.findById(
+      { _id: articleID },
+      (err, doc) => {
+        User.findById(userID, (err, user) => {
+          user.liked.push(doc);
+          user.save();
+        });
+      }
+    );
+  } catch (err) {
+    if (err)
+      return res.status(StatusCodes.NOT_FOUND).send("article might be deleted");
+  }
+};
+
+const getLikedArticle = async (req, res, next) => {
+  try {
+    User.findById(req.params.id)
+      .populate("liked")
+      .exec((err, user) => {
+        if (user) {
+          res.status(StatusCodes.OK).send(user["liked"]);
+        } else {
+          return res.status(StatusCodes.OK).send("no favorites articles");
+        }
+      });
+  } catch (err) {
+    if (err)
+      return res.status(StatusCodes.NOT_FOUND).send("no liked articles found");
   }
 };
 
@@ -128,6 +178,7 @@ const paginate = async (req, res, next) => {
 };
 
 module.exports = {
+  getArticles,
   addArticle,
   readArticle,
   deleteArticle,
@@ -135,4 +186,6 @@ module.exports = {
   getPublicArticles,
   loadMore,
   paginate,
+  likeArticle,
+  getLikedArticle,
 };

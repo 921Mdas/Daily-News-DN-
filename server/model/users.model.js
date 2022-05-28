@@ -51,6 +51,12 @@ const userSchema = new Schema(
       min: 18,
       max: 50,
     },
+    liked: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Article",
+      },
+    ],
   },
   {
     timestamps: true,

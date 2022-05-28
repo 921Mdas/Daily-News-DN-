@@ -5,6 +5,7 @@ import { MyContext } from "../../context/context";
 import { CHANGE_LAYOUT } from "../../context/type";
 import { SiDesignernews } from "react-icons/si";
 import { BsFillPersonFill } from "react-icons/bs";
+import Help from "./Help";
 
 // material ui
 import Box from "@mui/material/Box";

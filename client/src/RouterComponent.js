@@ -14,7 +14,7 @@ import AddArticle from "./Components/Dashboard/articles/dashboard.articles";
 import { AuthguardAdmin, AuthguardUser } from "./Hoc/Authguard";
 
 import { getAuthHeader } from "./Components/UtilComp/Tools";
-import { AUTOSIGN } from "./context/ApiUtil";
+import { AUTOSIGN } from "./context/apiUtil";
 import { MyContext } from "./context/context";
 import { AUTO_SIGN_URL } from "./context/type";
 import Loader from "./Components/UtilComp/Loader";
@@ -45,19 +45,31 @@ function RouterComponent() {
         ) : (
           <Layout>
             <Routes>
-              <Route path="/home" element={AuthguardAdmin(<Home />)} />
+              <Route
+                path="/home"
+                element={AuthguardAdmin(
+                  <Home state={state} dispatch={dispatch} />
+                )}
+              />
               <Route
                 path="/dashboard"
-                element={AuthguardAdmin(<Dashboard state={state} />)}
+                element={AuthguardAdmin(
+                  <Dashboard state={state} dispatch={dispatch} />
+                )}
               />
               <Route
                 path="/dashboard/articles"
                 element={AuthguardAdmin(<AddArticle />)}
               />
-              <Route path="/article/:id" element={<Article state={state} />} />
+              <Route
+                path="/article/:id"
+                element={<Article state={state} dispatch={dispatch} />}
+              />
               <Route
                 path="/dashboard/profile"
-                element={AuthguardAdmin(<Dashboard />)}
+                element={AuthguardAdmin(
+                  <Dashboard state={state} dispatch={dispatch} />
+                )}
               />
               <Route path="/" element={<Auth />} />
             </Routes>

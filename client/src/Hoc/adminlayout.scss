@@ -1,8 +1,12 @@
+@import "../index.scss";
+
 .dashboard {
-  height: 100vh;
+  height: max-content;
+  min-height: 100vh;
   margin-top: 0px;
-  margin-bottom: 0px !important;
+
   max-width: 100%;
+  padding: 0 15px;
 }
 
 .app_container.dash_layout {
@@ -12,15 +16,48 @@
 }
 
 .dashboard nav {
-  background: #212121;
+  background: var(--deadwhite);
   padding: 0px;
-  border-right: 5px solid #565656;
 }
 
 .dashboard .MuiList-root {
-  color: #fff;
+  color: var(--darkgreytransp);
 }
 
-.dashboard .MuiButtonBase-root {
-  border-bottom: 1px solid #313131;
+.UL-dashboard {
+  @include flex(flex-start, center, column, 1em);
+}
+
+.dash_options {
+  width: 100%;
+  height: 40px;
+  padding: 1em;
+  @include flex(flex-start, center, row, 1em);
+  text-decoration: none !important;
+  color: var(--darkgreytransp) !important;
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    text-decoration: none !important;
+    background: white;
+  }
+
+  p {
+    height: 100%;
+  }
+}
+
+.dash_nav_icon {
+  font-size: 25px;
+}
+
+.dash_home_link {
+  font-size: 30px !important;
+}
+
+.dash_title {
+  background: var(--blue);
+  color: var(--deadwhite) !important;
+  width: 100%;
+  margin: 0;
 }

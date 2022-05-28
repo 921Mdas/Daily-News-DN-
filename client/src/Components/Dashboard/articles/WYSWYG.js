@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./WYSWYG.scss";
 //// wysiwyg
 import { EditorState, ContentState } from "draft-js";
 import { stateToHTML } from "draft-js-export-html";

@@ -7,6 +7,7 @@ import { FaCcVisa } from "react-icons/fa";
 import { FaPaypal } from "react-icons/fa";
 import { FaCcMastercard } from "react-icons/fa";
 import { SiFsecure } from "react-icons/si";
+import Help from "./Help";
 
 function Footer() {
   return (
@@ -66,6 +67,8 @@ function Footer() {
           <FaCcMastercard className="sponsorIcons" />
         </div>
       </div>
+
+      <Help />
     </div>
   );
 }

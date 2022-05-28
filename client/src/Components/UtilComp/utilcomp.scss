@@ -7,6 +7,10 @@
   @include flex(center, center, row, 0);
 }
 
+.card_component {
+  max-width: 300px;
+}
+
 .card_actions {
   width: 100%;
   @include flex(center, center, row, 1em);
@@ -25,7 +29,9 @@
     color: var(--darkgreytransp);
   }
 
-  .action_card_icon {
+  .action_card_icon,
+  .action_card_icon_like,
+  .action_card_icon_delete {
     height: 100%;
     @extend .button_reset;
     border: none;
@@ -34,4 +40,19 @@
   .action_card_icon:hover {
     color: var(--blue);
   }
+  .action_card_icon_like:hover,
+  .action_card_icon_delete:hover {
+    color: var(--error);
+  }
+}
+
+.card_draft_nudge {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  color: var(--deadwhite);
+  background: var(--blue);
+  padding: 0 5px;
+  border-radius: 3px;
+  box-shadow: 0 0 5px 1px rgba(2, 2, 34, 0.246);
 }

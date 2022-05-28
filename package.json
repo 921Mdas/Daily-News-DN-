@@ -27,6 +27,7 @@
     "mongoose": "^5.11.8",
     "mongoose-aggregate-paginate-v2": "^1.0.42",
     "nodemailer": "^6.4.17",
+    "socket.io": "^4.5.1",
     "validator": "^13.5.2"
   }
 }

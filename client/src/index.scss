@@ -26,6 +26,7 @@ h5 {
   --deadwhite: #ededed;
   --cardicon: 25px;
   --taskicon: 35px;
+  --error: #d63031;
 }
 
 @mixin flex($jc, $ai, $fd, $gap) {
@@ -46,6 +47,10 @@ h5 {
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+@mixin Shadow() {
+  box-shadow: 0 8px 32px 0 rgba(25, 25, 26, 0.37);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
@@ -76,4 +81,25 @@ h5 {
 .button_reset {
   background: none;
   border-radius: 3px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(191, 201, 236);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

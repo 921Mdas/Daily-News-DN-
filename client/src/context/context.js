@@ -1,24 +1,22 @@
-import React, { useContext, useReducer, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useReducer } from "react";
 
-// actions
+// reducer actions
 import {
   GET_ARTICLES,
-  LOAD_MORE_ACTION,
-  REGISTER,
-  SIGN_IN,
+  UPDATE_INIT_SORT,
   GET_CURRENT_USER,
   SIGN_IN_OK,
   AUTH_OK,
   AUTH_NOT_OK,
   SIGN_OUT,
   CHANGE_LAYOUT,
+  GET_FAV_ARTICLES,
 } from "./type";
 
 // context
 const MyContext = React.createContext();
 
-// default user
+// default user details
 export const userDefault = {
   email: "",
   _id: "",
@@ -33,6 +31,13 @@ const reducer = (state, action) => {
   switch (action.type) {
     case GET_ARTICLES:
       return { ...state, articles: action.payload };
+    case GET_FAV_ARTICLES:
+      return { ...state, favorites: [...state.favorites, ...action.payload] };
+    case UPDATE_INIT_SORT:
+      return {
+        ...state,
+        initSort: { ...state.initSort, limit: action.payload },
+      };
     case CHANGE_LAYOUT:
       return { ...state, layout: action.payload };
     case GET_CURRENT_USER:
@@ -41,7 +46,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         isAuth: true,
-        // currentUser: { ...state.currentUser, ...action.payload },
       };
     case AUTH_NOT_OK:
       return { ...state, isAuth: null, currentUser: userDefault };
@@ -60,11 +64,7 @@ const reducer = (state, action) => {
         currentUser: userDefault,
         isAuth: null,
       };
-    case LOAD_MORE_ACTION:
-      return {
-        ...state,
-        initSort: { ...state.initSort, limit: action.payload },
-      };
+
     default:
       return state;
   }
@@ -77,19 +77,12 @@ const defaultState = {
   currentUser: userDefault,
   isAuth: null,
   layout: "",
+  favorites: [],
 };
-
-// make error true
-// dispatch action that calls the showToast
-// pass a message
-// create a clear function to remove all errors in state
 
 // MyProvider
 const MyProvider = props => {
   const [state, dispatch] = useReducer(reducer, defaultState);
-
-  // console.log("verifying if we are still logged in", state.isAuth);
-
   return (
     <MyContext.Provider value={{ state, dispatch }}>
       {props.children}
@@ -98,3 +91,9 @@ const MyProvider = props => {
 };
 
 export { MyProvider, MyContext };
+
+// TIPS
+// make error true
+// dispatch action that calls the showToast
+// pass a message
+// create a clear function to remove all errors in state
