@@ -82,7 +82,7 @@ function RouterComponent() {
             { font: "Roboto" },
           ]}
         />
-        <Footer />
+        <Footer state={state} />
       </BrowserRouter>
     </>
   );

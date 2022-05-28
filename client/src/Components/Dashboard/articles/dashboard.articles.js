@@ -135,12 +135,12 @@ const ArticleForm = () => {
       </div>
 
       <Divider className="mt-3 mb-3 dash_wy_divider" />
-      <h5 className="dash_wy_headline">Movie data and score</h5>
+      <h5 className="dash_wy_headline">Publishing urgency</h5>
       <div className="form-group">
         <TextField
           style={{ width: "100%" }}
           name="score"
-          label="Enter a score"
+          label="rate urgency"
           variant="outlined"
           {...formik.getFieldProps("score")}
           {...errorHelper(formik, "score")}
@@ -148,7 +148,7 @@ const ArticleForm = () => {
       </div>
 
       <FormikProvider value={formik}>
-        <h5 className="dash_wy_headline">Add the actors:</h5>
+        <h5 className="dash_wy_headline">Add co-authors:</h5>
         <FieldArray
           name="actors"
           render={arrayhelpers => (
@@ -157,7 +157,7 @@ const ArticleForm = () => {
                 <InputBase
                   inputRef={actorsValue}
                   className="input"
-                  placeholder="Add actor name here"
+                  placeholder="Add co-authors"
                 />
                 <IconButton
                   onClick={() => {
@@ -194,7 +194,7 @@ const ArticleForm = () => {
         <TextField
           style={{ width: "100%" }}
           name="director"
-          label="Enter a director"
+          label="Enter author"
           variant="outlined"
           {...formik.getFieldProps("director")}
           {...errorHelper(formik, "director")}

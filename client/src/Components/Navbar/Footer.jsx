@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsTwitter } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { BsYoutube } from "react-icons/bs";
@@ -9,7 +9,13 @@ import { FaCcMastercard } from "react-icons/fa";
 import { SiFsecure } from "react-icons/si";
 import Help from "./Help";
 
-function Footer() {
+function Footer({ state }) {
+  const [help, setHelp] = useState(false);
+
+  const handleHelp = () => {
+    setHelp(!help);
+  };
+
   return (
     <div className="footer_section">
       <div className="footerLinks">
@@ -67,8 +73,9 @@ function Footer() {
           <FaCcMastercard className="sponsorIcons" />
         </div>
       </div>
-
-      <Help />
+      <div className="problem">
+        <Help state={state} help={help} handleHelp={handleHelp} />
+      </div>
     </div>
   );
 }

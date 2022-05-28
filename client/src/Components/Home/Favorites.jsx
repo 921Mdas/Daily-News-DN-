@@ -3,20 +3,21 @@ import { Link } from "react-router-dom";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 
-const Favorites = ({ favorites }) => {
-  const [position, setPosition] = useState(0);
-  const moveFavAway = () => {
-    setPosition(110);
-  };
+const Favorites = ({
+  moveFavAway,
+  state: { favorites },
+  position,
+  setPosition,
+}) => {
   return (
     <div
       className="fav_articles"
-      style={{ transform: `translateX(-${position}%)` }}
+      style={{ transform: `translateX(${position ? 0 : -150}%)` }}
     >
       <h5 className="liked_article_title">
         <AiFillHeart /> articles
       </h5>
-      <button className="fav_close" onClick={() => moveFavAway()}>
+      <button className="fav_close" onClick={() => setPosition(false)}>
         <AiFillCloseCircle />
       </button>
 
@@ -41,4 +42,4 @@ const Favorites = ({ favorites }) => {
   );
 };
 
-export default Favorites;
+export default React.memo(Favorites);

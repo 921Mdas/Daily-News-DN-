@@ -87,10 +87,12 @@ const likeArticle = async (req, res, next) => {
 
 const getLikedArticle = async (req, res, next) => {
   try {
+    console.log("received params", req.params.id);
     User.findById(req.params.id)
       .populate("liked")
       .exec((err, user) => {
         if (user) {
+          console.log("nio", user);
           res.status(StatusCodes.OK).send(user["liked"]);
         } else {
           return res.status(StatusCodes.OK).send("no favorites articles");

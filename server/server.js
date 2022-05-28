@@ -7,8 +7,8 @@ const articleRoute = require("./routes/api/articles");
 const { verifyToken } = require("./middleware/auth");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const io = require("../server/io");
 app.use(express.json());
+const io = require("socket.io")();
 // middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,6 +28,12 @@ const server = app.listen(port, () => {
 });
 
 io.attach(server);
+
+io.on("connection", socket => {
+  socket.on("message", ({ name, message }) => {
+    io.emit("message", { name, message });
+  });
+});
 
 // connect to the db
 mongoose.connect(process.env.MONGO_URI, {

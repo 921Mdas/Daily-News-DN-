@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   Card,
@@ -11,11 +11,17 @@ import {
   Button,
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { AiFillDelete } from "react-icons/ai";
 import { BsFillEyeFill } from "react-icons/bs";
 import { RiDraftLine } from "react-icons/ri";
 import { FcDownload } from "react-icons/fc";
-import { DELETE_ARTICLE, LIKE_ARTICLE } from "../../context/apiUtil";
+import {
+  DELETE_ARTICLE,
+  LIKE_ARTICLE,
+  GETLIKED_ARTICLE,
+} from "../../context/apiUtil";
+import { GET_FAV_ARTICLES } from "../../context/type";
 import "./utilcomp.scss";
 import Badge from "@mui/material/Badge";
 import MailIcon from "@mui/icons-material/Mail";
@@ -25,15 +31,27 @@ const ArticleCard = ({
   idx,
   content,
   currentUser: { id: userID, email },
+  dispatch,
 }) => {
   const handleDelete = async id => {
     DELETE_ARTICLE(id);
   };
 
+  const [liking, setLiking] = useState(false);
+
+  const showFavoriteArticles = () => {
+    GETLIKED_ARTICLE(userID).then(fav => {
+      console.log("you liked", fav);
+
+      dispatch({ type: GET_FAV_ARTICLES, payload: fav });
+    });
+  };
+
   const handleLiked = async id => {
     // article id and user id
-    console.log("clicked");
     LIKE_ARTICLE(id, userID);
+    showFavoriteArticles();
+    setLiking(!liking);
   };
 
   if (article) {
@@ -62,15 +80,20 @@ const ArticleCard = ({
 
         <CardActions disableSpacing className="card_actions">
           <button
-            className="card_likeicon action_card_icon_like"
+            className="card_likeicon action_card_icon_like outline_remover"
             onClick={() => handleLiked(article._id)}
           >
-            {article.score > 3 ? (
-              <Badge badgeContent={article.score} color="primary">
-                <FavoriteIcon color="action" />
-              </Badge>
+            {liking ? (
+              <FavoriteIcon
+                color="action"
+                className="outline_remover heart_outline"
+                style={{ color: "red" }}
+              />
             ) : (
-              <FavoriteIcon color="action" />
+              <FavoriteBorderIcon
+                color="action"
+                className="outline_remover heart_filled"
+              />
             )}
           </button>
           {article.status === "public" ? (
@@ -79,9 +102,9 @@ const ArticleCard = ({
               color="primary"
               component={RouterLink}
               to={`/article/${article._id}`}
-              className="card_viewicon action_card_icon"
+              className="card_viewicon action_card_icon outline_remover"
             >
-              <BsFillEyeFill />
+              <BsFillEyeFill className="outline_remover" />
             </RouterLink>
           ) : (
             <RouterLink
@@ -89,9 +112,9 @@ const ArticleCard = ({
               color="primary"
               component={RouterLink}
               to={`/dashboard/articles`}
-              className="card_viewicon action_card_icon"
+              className="card_viewicon action_card_icon outline_remover"
             >
-              <RiDraftLine />
+              <RiDraftLine className="outline_remover" />
             </RouterLink>
           )}
 
@@ -103,7 +126,7 @@ const ArticleCard = ({
             className="card_viewicon action_card_icon"
             onClick={() => handleDelete(article._id)}
           >
-            <AiFillDelete className="card_delete_icon action_card_icon_delete" />
+            <AiFillDelete className="card_delete_icon action_card_icon_delete outline_remover" />
           </button>
           <p>Reach {32 * idx} K</p>
         </CardActions>
@@ -115,3 +138,7 @@ const ArticleCard = ({
 };
 
 export default React.memo(ArticleCard);
+
+// <Badge badgeContent={article.score} color="primary">
+//   <FavoriteBorderIcon color="action" />
+// </Badge>;

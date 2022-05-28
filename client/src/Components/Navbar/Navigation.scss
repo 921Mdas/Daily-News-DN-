@@ -342,14 +342,74 @@
   border-radius: 3px;
   background: white;
   margin: 10px auto;
+  overflow-y: scroll;
 }
 
 .message_chat {
   width: 95%;
-  height: 8vh;
+  height: 10vh;
   padding: 1em;
   margin-bottom: 20px;
   background: white;
   border-radius: 3px;
   margin: 10px auto;
+
+  form {
+    @include flex(flex-start, center, row, 10px);
+  }
+}
+
+.chat_btn {
+  @extend .button_reset;
+  border: none;
+  background: var(--blue);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.conversation {
+  @include flex(flex-start, center, row, 10px);
+
+  .chatter_name {
+    background: rgb(214, 214, 214);
+    border-radius: 3px;
+    padding: 2px 5px;
+  }
+
+  .chatter_message {
+    background: rgb(212, 218, 250);
+    border-radius: 3px;
+    padding: 2px 5px;
+  }
+}
+
+.name_field {
+  border: solid 1px red;
+  width: 55px;
+}
+
+.message_field {
+  width: 250px;
+}
+
+.helping_section {
+  animation: smooth 0.5s ease-in-out 1 direction forwards alternate;
+}
+
+@keyframes smooth {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.problem {
+  border: solid 1px red;
 }

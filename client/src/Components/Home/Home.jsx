@@ -18,7 +18,6 @@ import {
 import ArticleCard from "../UtilComp/Card";
 import Banner from "./HomeHeader";
 import TaskBar from "./Taskbar";
-import Favorites from "./Favorites";
 // images
 import doodle404 from "../../multimedia/doodle404.png";
 
@@ -69,7 +68,7 @@ const Home = ({ state, dispatch }) => {
 
       <TaskBar currentUser={currentUser} dispatch={dispatch} state={state} />
 
-      <Favorites favorites={favorites} />
+      {/* <Favorites favorites={favorites} /> */}
       <Divider />
 
       <div className="article_card">
@@ -83,6 +82,7 @@ const Home = ({ state, dispatch }) => {
                   idx={idx}
                   content={articles}
                   currentUser={currentUser}
+                  dispatch={dispatch}
                 />
               </div>
             );
