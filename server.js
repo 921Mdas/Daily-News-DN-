@@ -19,14 +19,14 @@ app.use(cors({ credentials: true }));
 app.use(cookieParser());
 require("dotenv").config();
 
-// app.get("*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
-
 // connect routes to server
 app.use("/api/users", userRoute);
 app.use("/api/articles", articleRoute);
 app.use("/", homeRoute);
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 // listening
 const port = process.env.PORT || 3001;
