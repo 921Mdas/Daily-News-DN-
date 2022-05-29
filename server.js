@@ -18,11 +18,12 @@ app.use(verifyToken);
 app.use(cors({ credentials: true }));
 app.use(cookieParser());
 require("dotenv").config();
+app.use(express.static(path.join(__dirname, "build")));
 
 // connect routes to server
 app.use("/api/users", userRoute);
 app.use("/api/articles", articleRoute);
-// app.use("/", homeRoute);
+app.use("/", homeRoute);
 
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
