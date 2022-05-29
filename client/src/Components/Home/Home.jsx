@@ -30,14 +30,14 @@ const Home = ({ state, dispatch }) => {
   const { articles, initSort, isAuth, currentUser, favorites } = state;
   const [showOBR, setCloseOBR] = useState(false);
   const loadMore = () => {
-    // onclick dispatch to update initsort
-    // doing a dispatch to update inisort
     let limit = state.initSort?.limit;
     dispatch({
       type: UPDATE_INIT_SORT,
       payload: (limit += 1),
     });
   };
+
+  // console.log(state, "sort");
 
   // initial load of articles / home page loads
 

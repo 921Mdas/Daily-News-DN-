@@ -51,11 +51,14 @@ function Footer({ state }) {
           </ul>
         </div>
         <div className="general">
-          <h3>SUPPORT</h3>
           <ul>
+            <div className="problem">
+              <Help state={state} help={help} handleHelp={handleHelp} />
+            </div>
             <li>Contact us</li>
             <li>FAQ</li>
             <li>Blog</li>
+            <li></li>
           </ul>
         </div>
       </div>
@@ -72,9 +75,6 @@ function Footer({ state }) {
           <FaCcVisa className="sponsorIcons" />
           <FaCcMastercard className="sponsorIcons" />
         </div>
-      </div>
-      <div className="problem">
-        <Help state={state} help={help} handleHelp={handleHelp} />
       </div>
     </div>
   );

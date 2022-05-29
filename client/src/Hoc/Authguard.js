@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate, Redirect, Navigate } from "react-router-dom";
+import {
+  useNavigate,
+  Redirect,
+  Navigate,
+  NavigationType,
+} from "react-router-dom";
 import { MyContext } from "../context/context";
 import Auth from "../Components/auth/index.auth";
 
@@ -8,11 +13,12 @@ const AuthguardAdmin = composedComponent => {
     state: { isAuth, currentUser },
   } = useContext(MyContext);
 
-  if (isAuth !== null) {
+  if (isAuth) {
     return <div>{composedComponent}</div>;
+  } else if (!isAuth) {
+    return <Auth />;
   } else {
-    return <div>{composedComponent}</div>;
-    // return <Auth />;
+    Navigate("/");
   }
 };
 

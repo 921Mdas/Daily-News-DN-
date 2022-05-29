@@ -51,7 +51,7 @@ const SliderData = [
 ];
 
 // this will be a route that will redirect on success
-const Auth = props => {
+const Auth = ({ state: { isAuth: Authenticated } }) => {
   const [register, setRegister] = useState(true);
   const location = useLocation().pathname.split("/")[1];
   const navigate = useNavigate();
@@ -116,7 +116,9 @@ const Auth = props => {
       } else {
         await USER_SIGN_IN(SIGN_IN_URL, values, dispatch);
         await dispatch({ type: AUTH_OK });
-        localStorage.setItem("auth", isAuth);
+        if (Authenticated) {
+          localStorage.setItem("auth", Authenticated);
+        }
       }
     } catch (error) {
       console.log(error);

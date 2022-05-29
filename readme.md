@@ -6,6 +6,38 @@
 
 @\*\* 4 - ADD ARTICLE
 
+## AAU
+
+            ## FEATURES IMPLEMENTED
+
+            - freelancers can write creative content / publications can bid on it to publish
+            - I want to register, login, view articles published by others, view my own drafts
+            - create a draft or article, view an article,
+            - view dashboard with monthly stats
+            - view own profile and editor information
+            - contact help
+
+            ## TOOLS USED
+
+            - LOGIN: jwt, googleOAuth, guarding routes
+            - STATE: centralised state with useReducer
+            - styling: sass, material ui, react-bootstrap, formik
+
+            ## FEATURES TO BE ADDED
+
+            - calculate tonality dashboard
+            - calculate reach (google analytics)
+            - calculate views/clicks and dollar value of each visit
+            - search for articles
+
+
+            ## challenges
+            - architecture / autosign in
+
+             ## REACT ARCHITECTURE
+            - TOP COMPONENT - Context and Provider to pass to children component
+            - GUARD ROUTE HIGH ORDER component - verifying authentication and creating conditional rendering
+
 ## STEP 1: CONFIG AND INSTALLATION
 
 - info: first npm init && install all dependencies

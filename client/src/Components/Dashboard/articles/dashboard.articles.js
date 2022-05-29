@@ -25,7 +25,7 @@ import AddIcon from "@material-ui/icons/Add";
 
 const AddArticle = props => {
   return (
-    <AdminLayout section="Add article">
+    <AdminLayout section="Publish">
       <ArticleForm />
     </AdminLayout>
   );
@@ -226,7 +226,7 @@ const ArticleForm = () => {
         type="submit"
         // disabled={false}
       >
-        Add article
+        Publish
       </Button>
     </form>
   );

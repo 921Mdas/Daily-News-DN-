@@ -36,7 +36,10 @@ const Navbar = () => {
 
   return (
     <div className="navbar navigation_bar">
-      <Link to="/home" className="navbar-brand d-flex align-items-center">
+      <Link
+        to={`\ ${currentLocation === "" ? "" : ""}`}
+        className="navbar-brand d-flex align-items-center"
+      >
         <SiDesignernews className="logo-icon" />
       </Link>
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
+import Loader from "../UtilComp/Loader";
 
 const Favorites = ({
   moveFavAway,
@@ -9,6 +10,12 @@ const Favorites = ({
   position,
   setPosition,
 }) => {
+  const [loading, setLoading] = useState(true);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 3000);
+
   return (
     <div
       className="fav_articles"
@@ -36,7 +43,7 @@ const Favorites = ({
           })}
         </div>
       ) : (
-        <h4>{favorites.length} favorite articles</h4>
+        <Loader className="favorite_loader" />
       )}
     </div>
   );

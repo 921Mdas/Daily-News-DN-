@@ -1,7 +1,7 @@
 @import "../../index.scss";
 
 .card_component .Loader {
-  border: solid 1px red;
+  // border: solid 1px red;
   width: 100%;
   height: 100vh;
   @include flex(center, center, row, 0);
@@ -60,7 +60,7 @@
 .outline_remover {
   outline: none !important;
   border: none !important;
-  border: solid 1px red;
+  // border: solid 1px red;
 
   &:active {
     outline: none !important;

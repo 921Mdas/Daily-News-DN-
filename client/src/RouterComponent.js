@@ -11,7 +11,9 @@ import Article from "./Components/Dashboard/articles/dashboard.article";
 import Dashboard from "./Components/Dashboard/index.dashboard";
 import Footer from "./Components/Navbar/Footer";
 import AddArticle from "./Components/Dashboard/articles/dashboard.articles";
+import Profile from "./Components/Dashboard/profiles/dashboard.profile";
 import { AuthguardAdmin, AuthguardUser } from "./Hoc/Authguard";
+import Contact from "./Components/Contact/Contact";
 
 import { getAuthHeader } from "./Components/UtilComp/Tools";
 import { AUTOSIGN } from "./context/apiUtil";
@@ -63,15 +65,18 @@ function RouterComponent() {
               />
               <Route
                 path="/article/:id"
-                element={<Article state={state} dispatch={dispatch} />}
-              />
-              <Route
-                path="/dashboard/profile"
                 element={AuthguardAdmin(
-                  <Dashboard state={state} dispatch={dispatch} />
+                  <Article state={state} dispatch={dispatch} />
                 )}
               />
-              <Route path="/" element={<Auth />} />
+              <Route
+                path="/contact"
+                element={<Contact state={state} dispatch={dispatch} />}
+              />
+              <Route
+                path="/"
+                element={<Auth state={state} dispatch={dispatch} />}
+              />
             </Routes>
           </Layout>
         )}

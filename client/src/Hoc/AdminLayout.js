@@ -28,9 +28,9 @@ const AdminLayout = props => {
             <RouterLink className="dash_options" to="/dashboard/articles">
               <BsFillPenFill className="dash_nav_icon" /> <p>Add article</p>
             </RouterLink>
-            <RouterLink className="dash_options" to="/dashboard/profile">
+            {/* <RouterLink className="dash_options" to="/dashboard/profile">
               <CgProfile className="dash_nav_icon" /> <p>Profile</p>
-            </RouterLink>
+            </RouterLink> */}
           </div>
         </nav>
 

@@ -218,10 +218,10 @@
   @include flex(center, center, row, 0);
   font-size: 50px;
   color: white;
-  @include positionabs(absolute, 180%, 90%);
-  background: var(--blue);
+  background: rgb(136, 136, 194);
   cursor: pointer;
   transition: all 0.5s ease-in-out;
+  margin-top: 25px;
 
   &:active {
     transform: scale(0.8);
@@ -245,7 +245,7 @@
   height: 65vh;
   background: var(--deadwhite);
   box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.157);
-  @include positionabs(absolute, 110%, 68%);
+  @include positionabs(absolute, 120%, 68%);
   border-radius: 6px;
   z-index: 10;
   overflow-y: scroll;
@@ -386,7 +386,7 @@
 }
 
 .name_field {
-  border: solid 1px red;
+  // border: solid 1px red;
   width: 55px;
 }
 
@@ -410,6 +410,6 @@
   }
 }
 
-.problem {
-  border: solid 1px red;
+.chat_section {
+  // border: solid 1px red;
 }
