@@ -1,126 +1,70 @@
-@\*\* 1- Server install npm install accesscontrol@2.2.1 bcrypt@5.0.0 body-parser@1.19.0 dotenv@8.2.0 express@4.17.1 jsonwebtoken@8.5.1 mailgen@2.0.14 mongodb@3.6.3 mongoose@5.11.8 mongoose-aggregate-paginate-v2@1.0.42 nodemailer@6.4.17 validator@13.5.2
+# Getting Started with Create React App
 
-@\*\* 2- client install npm install --force axios@0.21.0 bootstrap@4.5.3 draft-js@0.11.7 draft-js-export-html@1.4.1 formik@2.2.6 html-to-draftjs@1.5.0 moment@2.29.1 react-bootstrap@1.4.0 react-cookies@0.1.1 react-draft-wysiwyg@1.14.5 react-google-font-loader@1.1.0 react-moment@1.1.1 react-redux@7.2.2 react-router-bootstrap@0.25.0 react-router-dom@5.2.0 react-toastify@6.2.0 redux@4.0.5 redux-thunk@2.3.0 yup@0.32.8
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-@\*\* 3 - Admin layout
+## Available Scripts
 
-@\*\* 4 - ADD ARTICLE
+In the project directory, you can run:
 
-## AAU
+### `npm start`
 
-            ## FEATURES IMPLEMENTED
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-            - freelancers can write creative content / publications can bid on it to publish
-            - I want to register, login, view articles published by others, view my own drafts
-            - create a draft or article, view an article,
-            - view dashboard with monthly stats
-            - view own profile and editor information
-            - contact help
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-            ## TOOLS USED
+### `npm test`
 
-            - LOGIN: jwt, googleOAuth, guarding routes
-            - STATE: centralised state with useReducer
-            - styling: sass, material ui, react-bootstrap, formik
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-            ## FEATURES TO BE ADDED
+### `npm run build`
 
-            - calculate tonality dashboard
-            - calculate reach (google analytics)
-            - calculate views/clicks and dollar value of each visit
-            - search for articles
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-            ## challenges
-            - architecture / autosign in
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-             ## REACT ARCHITECTURE
-            - TOP COMPONENT - Context and Provider to pass to children component
-            - GUARD ROUTE HIGH ORDER component - verifying authentication and creating conditional rendering
+### `npm run eject`
 
-## STEP 1: CONFIG AND INSTALLATION
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-- info: first npm init && install all dependencies
-- info: sever first then client right after client is in a folder
-  info: if we know what to do on the backend you can start with client, however if you are not sure, start server
-  next: install scripts to concurrently run server and client in the server package.json / 1 script for server / 1 for client / 1 for dev with concurrently
-  nodemon is restarting all the time? create a nodemon.json file to watch specific things (server, client, etc.)
-  if your project is going on github you need a gitignore
-  STEP 2: CREATE SERVER
-  seems ideal to create your own server rather than user express-generator / looks like it avoids buggs
-  environmental variables dotenv / config and add the database with mongouri
-  first start with authentication because it will be the middleware applied to all routes.
-  create a model / controller / config / routes etc.
-  STEP 3: USER REGISTRATION / SIGN IN & VALIDATE TOKENS
-  user model will contain (isEmailtaken statics, Schema.pre save password hashing if is.Modified(password), generate token schema.methods)
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-those functions will be used in the registration route/controller for new users
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-the model has access to the user via this (user = this)
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-the methods responsible for tokens,passwords comparison, are all stored in model and referenced in the controller (good structure)
+## Learn More
 
-if you have multiple res.send and get error: ERR HTTP HEADERS SENT just add return in front of the res
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-validating token needs a middleware we can apply to multiple routes
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-validating with jwt.verify
+### Code Splitting
 
-res.locals.whatever can help us store decoded value of a token and use it elsewhere
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-## STEP 5: NORMAL ARTICLE SCHEMA & RENDER CONTENT BY STATUS
+### Analyzing the Bundle Size
 
--done
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-## STEP 6: LOAD MORE CONTENT
+### Making a Progressive Web App
 
-- without someone having logged into the system, they should be able to see the top or 10 article(artists, etc) depending on the project
-- // {sortBy:"\_id",order:"asc", limit:10, skip:0}
-- on the client we will send this information to the backend
-- a post request with some of the information on line 2
-- we can set this for the common users but the admin should be able to see the whole database so for him let' sset up pagination
-- there is a better method - pagination (look into aggregate paginate option)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-**\*\*\*\***\*\*\***\*\*\*\***PAGINATION**\*\***\*\***\*\***\***\*\***\*\***\*\***
+### Advanced Configuration
 
-## FRONT END
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-- react toastify needs to be put on a higher component, preferably layout
-  -notifications are showed where the APIs are made between back and front (run toast there)
+### Deployment
 
-- create an authentication form login signup as a component (on initial load), next use that component on sign in to redirect to home page
-- create API UTIL that can include all reusable functions
-- create component util for reusable components
-- router component file rendered in index is better
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-## AUTO SIGN IN
+### `npm run build` fails to minify
 
-- use the token to auto login the user
-- need to set a header that will be received by the backend signin route, verified, decoded, extract user info, find user in the database and send user info back.
-- create a common place to send the token in header over and over each time you want to verify, dont pass it manually
-- use isAuth to render loader or routes on application start
-
-**dynamic Layout**
-
-- useLocation to understand where you are in the app and render specific layouts based on the path
-
-## GUARDING ROUTES
-
-- even when we are not signed in, we can face issues such as changing the url and still accessing the application; solution is authentication HOC page
-
-- state persistence can be a real issue when changing pages
-- that's where redux comes in i guess localstorage in the meantime
-
-## ARTICLES CRUD
-
-## Additional features
-
-- languages translation (i18n - internationalization (translation))
-
-\*\* learn to make API calls in the context file
-// link between front and back is where to show notifs
-// for delete make sure delete useEffect is watching state / one liner context relation state
-
-## PORT ISSUES
-
-force port to end run: npx kill-port 3001
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -72,8 +72,8 @@ const Home = ({ state, dispatch }) => {
       <Divider />
 
       <div className="article_card">
-        {articles.length > 0 ? (
-          articles.map((article, idx) => {
+        {articles?.length > 0 ? (
+          articles?.map((article, idx) => {
             return (
               <div key={article._id} className="card_container">
                 <ArticleCard
@@ -98,7 +98,7 @@ const Home = ({ state, dispatch }) => {
             </h3>
           </div>
         )}
-        {articles.length > 0 ? (
+        {articles?.length > 0 ? (
           <Button
             className="button loadmore"
             variant="outline"
@@ -106,7 +106,9 @@ const Home = ({ state, dispatch }) => {
           >
             <GrAdd className="loadmore_icon" />
           </Button>
-        ) : null}
+        ) : (
+          <h1>no articles</h1>
+        )}
       </div>
     </div>
   );

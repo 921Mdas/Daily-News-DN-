@@ -47,7 +47,7 @@ const ScoreCard = ({ current }) => {
           </Avatar>
         </ListItemAvatar>
         <div>
-          {current.actors.map((item, index) => (
+          {current.actors?.map((item, index) => (
             <Chip
               key={`${index + item}`}
               item={item}

@@ -152,7 +152,7 @@ const Auth = ({ state: { isAuth: Authenticated } }) => {
             </button>
           </div>
           <div className="reg_images">
-            {SliderData.map((info, idx) => {
+            {SliderData?.map((info, idx) => {
               return (
                 <div
                   className="reg_img_content3"
@@ -250,7 +250,7 @@ const Auth = ({ state: { isAuth: Authenticated } }) => {
 };
 
 const SliderDots = ({ counter }) => {
-  return SliderData.map((el, idx) => {
+  return SliderData?.map((el, idx) => {
     return (
       <button
         key={idx}

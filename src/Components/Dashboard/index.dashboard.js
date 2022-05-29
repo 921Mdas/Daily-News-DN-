@@ -86,13 +86,13 @@ const Dashboard = ({ state, dispatch }) => {
       <h3 className="middle_section_title">KEY RESULTS OF THE MONTH</h3>
 
       <div className="top_section">
-        {articleData.map((data, idx) => {
+        {articleData?.map((data, idx) => {
           return <StatCard key={idx} data={data} />;
         })}
       </div>
       <h3 className="middle_section_title">TOP CONTENT</h3>
       <div className="middle_section">
-        {top3Articles.map((article, idx) => {
+        {top3Articles?.map((article, idx) => {
           return (
             <DashCard article={article} idx={idx} label={PerformingContent} />
           );

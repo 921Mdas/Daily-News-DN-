@@ -175,7 +175,7 @@ const ArticleForm = () => {
               ) : null}
 
               <div className="chip_container">
-                {formik.values.actors.map((actor, index) => (
+                {formik.values.actors?.map((actor, index) => (
                   <div key={actor}>
                     <Chip
                       label={`${actor}`}

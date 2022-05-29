@@ -49,25 +49,16 @@ function RouterComponent() {
             <Routes>
               <Route
                 path="/home"
-                element={AuthguardAdmin(
-                  <Home state={state} dispatch={dispatch} />
-                )}
+                element={<Home state={state} dispatch={dispatch} />}
               />
               <Route
                 path="/dashboard"
-                element={AuthguardAdmin(
-                  <Dashboard state={state} dispatch={dispatch} />
-                )}
+                element={<Dashboard state={state} dispatch={dispatch} />}
               />
-              <Route
-                path="/dashboard/articles"
-                element={AuthguardAdmin(<AddArticle />)}
-              />
+              <Route path="/dashboard/articles" element={<AddArticle />} />
               <Route
                 path="/article/:id"
-                element={AuthguardAdmin(
-                  <Article state={state} dispatch={dispatch} />
-                )}
+                element={<Article state={state} dispatch={dispatch} />}
               />
               <Route
                 path="/contact"

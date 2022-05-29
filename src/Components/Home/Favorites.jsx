@@ -30,7 +30,7 @@ const Favorites = ({
 
       {favorites.length > 0 ? (
         <div className="article_picked_section">
-          {favorites.map((article, idx) => {
+          {favorites?.map((article, idx) => {
             return (
               <Link
                 to={`/${article._id}`}

@@ -29,7 +29,7 @@ const Help = ({ state: base, help, handleHelp }) => {
   const [chat, setChat] = useState([]);
 
   const renderChat = () => {
-    return chat.map(({ name, message }, idx) => {
+    return chat?.map(({ name, message }, idx) => {
       return (
         <div key={idx}>
           <div className="conversation">
