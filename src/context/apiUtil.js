@@ -29,7 +29,7 @@ const INIT_GET_ARTICLES = async url => {
   try {
     const articles = await axios.get(url);
     const content = await articles;
-    return content.data;
+    return content?.data;
   } catch (error) {
     showToast(NOTIFTYPE.error, error.response.data.message);
   }
