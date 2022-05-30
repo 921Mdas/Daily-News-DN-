@@ -13,21 +13,19 @@ export const SIGN_OUT = "SIGN_OUT";
 export const CHANGE_LAYOUT = "CHANGE_LAYOUT";
 
 const BASEURL =
-  process.env.NODE_ENV === "production"
-    ? window.location.hostname
-    : "http://localhost:3001";
+  process.env.NODE_ENV === "production" ? null : "http://localhost:3001/";
 
 console.log(process.env.NODE_ENV === "production", window.location.hostname);
 // API URLS
-export const GET_CONTENT_URL = ` ${BASEURL}/api/articles/content`;
-export const LOADMORE_URL = `${BASEURL}/api/articles/loadmore`;
-export const DELETE_ARTICLE_URL = `${BASEURL}/api/articles/admin/delete/`;
-export const LIKE_ARTICLE_URL = `${BASEURL}/api/articles/admin/like/`;
-export const GETLIKED_ARTICLE_URL = `${BASEURL}/api/articles/admin/like/`;
-export const SIGN_UP_URL = `${BASEURL}/api/users/register`;
-export const SIGN_IN_URL = `${BASEURL}/api/users/signin`;
-export const AUTO_SIGN_URL = `${BASEURL}/api/users/isauth`;
-export const CREATE_ARTICLE_URL = `${BASEURL}/api/articles/admin/addarticles`;
+export const GET_CONTENT_URL = ` ${BASEURL}api/articles/content`;
+export const LOADMORE_URL = `${BASEURL}api/articles/loadmore`;
+export const DELETE_ARTICLE_URL = `${BASEURL}api/articles/admin/delete/`;
+export const LIKE_ARTICLE_URL = `${BASEURL}api/articles/admin/like/`;
+export const GETLIKED_ARTICLE_URL = `${BASEURL}api/articles/admin/like/`;
+export const SIGN_UP_URL = `${BASEURL}api/users/register`;
+export const SIGN_IN_URL = `${BASEURL}api/users/signin`;
+export const AUTO_SIGN_URL = `${BASEURL}api/users/isauth`;
+export const CREATE_ARTICLE_URL = `${BASEURL}api/articles/admin/addarticles`;
 
 // local Storage item names
 export const ARTICLES_STORED = "articles";
