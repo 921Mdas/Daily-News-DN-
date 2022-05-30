@@ -17,7 +17,12 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 
-const socket = io.connect("http://localhost:3001/");
+const socketURL =
+  process.env.NODE_ENV === "production"
+    ? window.location.hostname
+    : "http://localhost:3001/";
+
+const socket = io.connect(socketURL, { secure: true });
 
 const Help = ({ state: base, help, handleHelp }) => {
   const {
