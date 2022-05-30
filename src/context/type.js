@@ -12,10 +12,8 @@ export const AUTH_NOT_OK = "AUTH_NOT_OK";
 export const SIGN_OUT = "SIGN_OUT";
 export const CHANGE_LAYOUT = "CHANGE_LAYOUT";
 
-const BASEURL =
-  process.env.NODE_ENV === "production" ? null : "http://localhost:3001/";
+const BASEURL = "http://localhost:3001/";
 
-console.log(process.env.NODE_ENV === "production", window.location.hostname);
 // API URLS
 export const GET_CONTENT_URL = ` ${BASEURL}api/articles/content`;
 export const LOADMORE_URL = `${BASEURL}api/articles/loadmore`;
