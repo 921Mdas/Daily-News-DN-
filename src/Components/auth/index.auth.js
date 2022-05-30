@@ -229,7 +229,7 @@ const Auth = ({ state: { isAuth: Authenticated } }) => {
                   </Button>
                   <Divider />
 
-                  <GoogleLogin
+                  {/* <GoogleLogin
                     className="login-googleBtn"
                     clientId={
                       "772173664744-lr5pa17sih47aeb539m8svtht2v2oe1v.apps.googleusercontent.com"
@@ -238,7 +238,7 @@ const Auth = ({ state: { isAuth: Authenticated } }) => {
                     onSuccess={handleLogin}
                     onFailure={handleFailure}
                     cookiePolicy={"single_host_origin"}
-                  ></GoogleLogin>
+                  ></GoogleLogin> */}
                 </div>
               </div>
             </form>
