@@ -18,7 +18,7 @@ const AuthguardAdmin = composedComponent => {
   } else if (!isAuth) {
     return <Auth />;
   } else {
-    Navigate("/");
+    return <Auth />;
   }
 };
 
