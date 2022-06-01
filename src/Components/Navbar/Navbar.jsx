@@ -46,7 +46,7 @@ const Navbar = () => {
       {isAuth ? (
         <div className="nav_personalInfo">
           <p>
-            Signed is as <strong>{currentUser.email}</strong>
+            Signed is as <strong>{currentUser.email.split("@")[0]}</strong>
           </p>
           <div className="nav_avatar">
             <BsFillPersonFill className="nav_personicon" />

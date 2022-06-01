@@ -87,7 +87,7 @@ const Dashboard = ({ state, dispatch }) => {
 
       <div className="top_section">
         {articleData?.map((data, idx) => {
-          return <StatCard key={idx} data={data} />;
+          return <StatCard className="stat_card_el" key={idx} data={data} />;
         })}
       </div>
       <h3 className="middle_section_title">TOP CONTENT</h3>
@@ -98,10 +98,10 @@ const Dashboard = ({ state, dispatch }) => {
           );
         })}
       </div>
-      <h3 className="middle_section_title">CONTENT BREAKDOWN</h3>
+      <h3 className="middle_section_title last_title">CONTENT BREAKDOWN</h3>
       <div className="graphs_section">
-        <SOV />
-        <TIMELINE />
+        <SOV className="SOV" />
+        <TIMELINE className="timeline" />
       </div>
     </AdminLayout>
   );

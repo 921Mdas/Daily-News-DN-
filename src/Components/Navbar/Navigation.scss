@@ -240,12 +240,22 @@
   }
 }
 
+.helping_section {
+  position: absolute;
+  bottom: 0%;
+  right: 5%;
+  border: solid 1px red;
+  width: 30vw;
+  height: 70vh;
+  z-index: 20;
+}
+
 .LiveChat {
-  width: 30%;
+  width: 100%;
   height: 65vh;
   background: var(--deadwhite);
   box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.157);
-  @include positionabs(absolute, 120%, 68%);
+  position: absolute;
   border-radius: 6px;
   z-index: 10;
   overflow-y: scroll;
@@ -394,9 +404,11 @@
   width: 250px;
 }
 
-.helping_section {
-  animation: smooth 0.5s ease-in-out 1 direction forwards alternate;
-}
+// .helping_section {
+//   animation: smooth 0.5s ease-in-out 1 direction forwards alternate;
+//   position: absolute;
+//   width: 100%;
+// }
 
 @keyframes smooth {
   0% {

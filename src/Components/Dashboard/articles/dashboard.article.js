@@ -28,13 +28,13 @@ const Article = ({ state: { articles } }) => {
 
         <h3>{title}</h3>
         <div className="mt-3 content">
-          <div
+          {/* <div
             className="capture_caption"
             style={{
               background: `url(https://picsum.photos/1920/1080)`,
               backgroundSize: "cover",
             }}
-          ></div>
+          ></div> */}
           <div
             className="content_container"
             dangerouslySetInnerHTML={{ __html: content }}

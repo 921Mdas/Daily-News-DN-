@@ -103,3 +103,441 @@ h5 {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+// media queries
+
+// media queries
+// 320px, 768px, and 1200px
+
+@media screen and (max-width: 582px) {
+  // login
+  .auth_container {
+    height: 90vh;
+    @include flex(center, center, column, 1em);
+
+    .registration_slider_section {
+      display: none;
+    }
+
+    .registration_section {
+      .registration_btn {
+        max-width: 100px !important;
+      }
+
+      .reg_prompt {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .reg_content_headline {
+    font-size: 20px;
+  }
+
+  // navigation bar
+
+  .navigation_bar {
+    .nav_personalInfo {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      display: none;
+    }
+    .nav_personicon {
+      font-size: 15px;
+    }
+  }
+
+  // home
+  // >> banner
+
+  .home_header {
+    .home_header_prompt {
+      width: 90%;
+
+      h2 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 15px;
+        padding: 5px;
+      }
+    }
+    .home_toggle_onboarding {
+      left: 90%;
+      top: 2%;
+    }
+  }
+
+  .card_component {
+    margin: 0 auto;
+  }
+
+  .article_card {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home_taskbar {
+    justify-content: center;
+
+    .filler {
+      width: 30%;
+      border: solid 1px blue;
+      display: none;
+    }
+
+    .taskbar_icons {
+    }
+  }
+
+  .content_container {
+    width: 100%;
+    padding: 1em;
+  }
+
+  // footer
+  .footer_section {
+    display: none;
+  }
+
+  // dashboard
+
+  .adminLayout {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .dashboard {
+    height: max-content;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .last_title {
+    display: none;
+  }
+  .middle_section_title {
+    font-size: 15px;
+    width: 100%;
+
+    &:nth-child(2) {
+      display: none;
+      color: orange;
+    }
+  }
+
+  .top_section {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .middle_section {
+    margin: 10px 0;
+    @include flex(space-between, center, column, 1em);
+  }
+
+  .graphs_section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px;
+    grid-auto-rows: 300px;
+    gap: 1em;
+    display: none;
+  }
+
+  .sov,
+  .timeline {
+    border: solid 1px var(--deadwhite);
+    border-radius: 3px;
+    padding: 1em;
+    background: white;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 583px) and (max-width: 900px) {
+  .reg_content_headline {
+    font-size: 20px;
+  }
+
+  .home_taskbar {
+    justify-content: center;
+
+    .filler {
+      width: 30%;
+      border: solid 1px blue;
+      display: none;
+    }
+
+    .taskbar_icons {
+    }
+  }
+
+  .card_component {
+    margin: 0 auto;
+  }
+
+  .footer_section {
+    height: 300px;
+    padding: 10px;
+    .social_links {
+      @include flex(center, center, row, 0);
+      height: 70px;
+    }
+    .footerLinks {
+      padding: 0;
+      display: flex;
+      gap: 2em;
+    }
+
+    .problem {
+      display: none;
+    }
+
+    .general {
+      &:nth-child(4),
+      &:nth-child(5) {
+        display: none;
+      }
+      h3 {
+        font-size: 20px;
+      }
+    }
+
+    .socialIcons {
+      font-size: 25px;
+    }
+
+    .sponsorIcons {
+      display: none;
+    }
+  }
+
+  // dashboard
+
+  .sidebar_dashboard {
+    border: solid 1px red;
+  }
+
+  .nav_personalInfo {
+    display: none;
+  }
+
+  .home_header_prompt {
+    width: 90%;
+  }
+
+  .dashboard nav {
+    /* background: var(--deadwhite); */
+    padding: 0px;
+    min-width: 200px;
+    min-height: 100vh;
+    position: absolute;
+  }
+
+  .dash_title {
+    width: 200px;
+    text-align: center;
+  }
+
+  .adminLayout {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: solid 1px red;
+  }
+  .dashboard {
+    height: max-content;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .last_title {
+    display: none;
+  }
+  .middle_section_title {
+    font-size: 15px;
+    width: 100%;
+
+    &:nth-child(2) {
+      display: none;
+      color: orange;
+    }
+  }
+
+  .top_section {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .middle_section {
+    margin: 10px 0;
+    @include flex(space-between, center, column, 1em);
+  }
+
+  .graphs_section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px;
+    grid-auto-rows: 300px;
+    gap: 1em;
+    display: none;
+  }
+
+  .sov,
+  .timeline {
+    border: solid 1px var(--deadwhite);
+    border-radius: 3px;
+    padding: 1em;
+    background: white;
+    display: none;
+  }
+}
+@media screen and (min-width: 901px) and (max-width: 1100px) {
+  .home_taskbar {
+    justify-content: center;
+
+    .filler {
+      width: 30%;
+      border: solid 1px blue;
+      display: none;
+    }
+
+    .taskbar_icons {
+    }
+  }
+
+  .reg_content_headline {
+    font-size: 20px;
+  }
+
+  .card_component {
+    margin: 0 auto;
+  }
+
+  .footer_section {
+    height: 300px;
+    padding: 10px;
+    .social_links {
+      @include flex(center, center, row, 0);
+      height: 70px;
+    }
+    .footerLinks {
+      padding: 0;
+      display: flex;
+      gap: 2em;
+    }
+
+    .problem {
+      display: none;
+    }
+
+    .general {
+      &:nth-child(4),
+      &:nth-child(5) {
+        display: none;
+      }
+      h3 {
+        font-size: 20px;
+      }
+    }
+
+    .socialIcons {
+      font-size: 25px;
+    }
+
+    .sponsorIcons {
+      display: none;
+    }
+  }
+
+  // dashboard
+
+  .sidebar_dashboard {
+    border: solid 1px red;
+    margin-right: 10px;
+  }
+
+  .nav_personalInfo {
+    display: none;
+  }
+
+  .home_header_prompt {
+    width: 90%;
+  }
+
+  .dashboard nav {
+    /* background: var(--deadwhite); */
+    padding: 0px;
+    min-width: 200px;
+    min-height: 100vh;
+    position: absolute;
+  }
+
+  .dash_title {
+    width: 200px;
+    text-align: center;
+  }
+
+  .adminLayout {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: solid 1px red;
+  }
+  .dashboard {
+    height: max-content;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .last_title {
+    display: none;
+  }
+  .middle_section_title {
+    font-size: 15px;
+    width: 100%;
+
+    &:nth-child(2) {
+      display: none;
+      color: orange;
+    }
+  }
+
+  .h2 {
+    display: none;
+  }
+
+  .top_section {
+    width: 90%;
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+  }
+
+  .middle_section {
+    margin: 10px 0;
+    @include flex(space-between, center, column, 1em);
+  }
+
+  .graphs_section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px;
+    grid-auto-rows: 300px;
+    gap: 1em;
+    display: none;
+  }
+
+  .sov,
+  .timeline {
+    border: solid 1px var(--deadwhite);
+    border-radius: 3px;
+    padding: 1em;
+    background: white;
+    display: none;
+  }
+}
+
+.downer {
+  bottom: -90%;
+}

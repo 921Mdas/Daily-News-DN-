@@ -3,6 +3,7 @@ import { SiDesignernews } from "react-icons/si";
 import { BsFillChatRightDotsFill } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 import io from "socket.io-client";
+import { useLocation } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -17,6 +18,10 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 
+// dev
+// const socketURL = "http://localhost:3001/";
+
+// production
 const socketURL =
   process.env.NODE_ENV === "production"
     ? window.location.hostname
@@ -28,6 +33,9 @@ const Help = ({ state: base, help, handleHelp }) => {
   const {
     currentUser: { email },
   } = base;
+
+  const { pathname } = useLocation();
+  const location = pathname.split("/")[1];
 
   const personName = email.split("@")[0];
   const [state, setState] = useState({ message: "", name: "" });
@@ -52,6 +60,7 @@ const Help = ({ state: base, help, handleHelp }) => {
     socket.emit("message", { name, message });
     setState({ message: "", name });
   };
+
   const handleChange = e => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
@@ -65,7 +74,9 @@ const Help = ({ state: base, help, handleHelp }) => {
   return (
     <>
       {help ? (
-        <div className="helping_section">
+        <div
+          className={`helping_section ${location === "home" ? "downer" : null}`}
+        >
           {" "}
           <div className="LiveChat">
             <div className="top_chat">

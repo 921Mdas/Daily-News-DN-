@@ -19,7 +19,7 @@ import pub2 from "../../multimedia/pub2.png";
 import pub5 from "../../multimedia/pub5.png";
 import pub4 from "../../multimedia/pub4.png";
 
-const publications = [pub1, pub2];
+const publications = ["BBC", "Forbes"];
 
 const ScoreCard = ({ current }) => {
   return (
@@ -54,7 +54,7 @@ const ScoreCard = ({ current }) => {
               label={item}
               clickable
               color="primary"
-              className="chip"
+              className="chip co_authors_btns"
             />
           ))}
         </div>
@@ -78,8 +78,12 @@ const ScoreCard = ({ current }) => {
         <ListItemText primary="Published By" />
       </ListItem>
       <div className="pubs">
-        {publications.map((img, idx) => {
-          return <img key={idx} src={img} alt="" className="pub_avatar" />;
+        {publications.map((txt, idx) => {
+          return (
+            <p key={idx} alt="" className="pub_avatar">
+              {txt}
+            </p>
+          );
         })}
       </div>
     </List>

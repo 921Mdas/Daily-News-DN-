@@ -61,7 +61,7 @@ const Home = ({ state, dispatch }) => {
           </h1>
         </div>
       ) : (
-        <Banner closeOBR={closeOBR} />
+        <Banner closeOBR={closeOBR} currentUser={currentUser} />
       )}
 
       <Divider />

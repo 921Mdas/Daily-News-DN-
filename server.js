@@ -1,23 +1,35 @@
-const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
-const path = require("path");
-const bodyParser = require("body-parser");
-const userRoute = require("./routes/api/users");
-const homeRoute = require("./routes/home");
-const articleRoute = require("./routes/api/articles");
-const { verifyToken } = require("./middleware/auth");
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
+var express = require("express");
+var app = express();
+var mongoose = require("mongoose");
+var path = require("path");
+var bodyParser = require("body-parser");
+const { OAuth2Client } = require("google-auth-library");
+var userRoute = require("./routes/api/users");
+var homeRoute = require("./routes/home");
+var articleRoute = require("./routes/api/articles");
+var { verifyToken } = require("./middleware/auth");
+var cors = require("cors");
+var cookieParser = require("cookie-parser");
+var session = require("express-session");
+var passport = require("passport");
 app.use(express.json());
-const io = require("socket.io")();
+var io = require("socket.io")();
 // middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(verifyToken);
 app.use(cors({ credentials: true }));
 app.use(cookieParser());
+app.use(
+  session({
+    secret: "Dashnews",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 require("dotenv").config();
+require("./config/passport");
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 app.use(express.static(path.join(__dirname, "build")));
 
 // connect routes to server

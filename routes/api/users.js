@@ -33,6 +33,10 @@ router.post(
   ctrl.updateEmail
 );
 
+router.post("/google-login", (req, res, next) => {
+  ctrl.NewUser(req, res, next);
+});
+
 // a simple one to check if user is authenticated or has a valid token
 
 router.get("/isauth", isLoggedIn, ctrl.isAuthenticated);

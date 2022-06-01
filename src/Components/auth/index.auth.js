@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { MyContext } from "../../context/context";
 import "./auth.scss";
 import { TextField, Button, Slide } from "@material-ui/core";
+import { gapi } from "gapi-script";
 
 import { Divider } from "@material-ui/core";
 import GoogleLogin from "react-google-login";
@@ -55,12 +56,21 @@ const Auth = ({ state: { isAuth: Authenticated } }) => {
   const [register, setRegister] = useState(true);
   const location = useLocation().pathname.split("/")[1];
   const navigate = useNavigate();
+  const [localUser, setlocalUser] = useState({
+    email: "",
+    password: "",
+  });
   const {
     state: { currentUser, isAuth, registered },
     dispatch,
   } = useContext(MyContext);
   const [moveleft, setMoveLeft] = useState(false);
   let [counter, setUseCounter] = useState(1);
+  const [loginData, setLoginData] = useState(
+    localStorage.getItem("loginData")
+      ? JSON.parse(localStorage.getItem("loginData"))
+      : null
+  );
 
   const moveSlider = () => {
     setMoveLeft(true);
@@ -71,17 +81,22 @@ const Auth = ({ state: { isAuth: Authenticated } }) => {
     }
   };
 
-  //  const handleLogin = async (googleData)=>{
-  //  const res = await fetch('http://localhost:3001/user/google-login',{
-  //    method:"POST",
-  //    body:JSON.stringify({token:googleData.tokenId}),
-  //     headers:{
-  //    'Content-Type':'application/json',
-  //  }
-  //  })
+  const handleLogin = async googleData => {
+    const res = await fetch("http://localhost:3001/api/users/google-login", {
+      method: "POST",
+      body: JSON.stringify({ token: googleData.tokenId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  const handleLogin = () => {
-    // console.log("hello");
+    const data = await res.json();
+    setLoginData(data);
+
+    console.log(data);
+
+    data ? navigate("/home") : navigate("/");
+    localStorage.setItem("loginData", JSON.stringify(data));
   };
 
   const handleFailure = err => {
@@ -90,8 +105,20 @@ const Auth = ({ state: { isAuth: Authenticated } }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("loginData");
-    // setLoginData(null);
+    setLoginData(null);
   };
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId:
+          "901772827448-1abq67efvtoursl7ilec2i9pev77h3nu.apps.googleusercontent.com",
+        scope: "email",
+      });
+    }
+
+    gapi.load("client:auth2", start);
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -141,7 +168,6 @@ const Auth = ({ state: { isAuth: Authenticated } }) => {
   }, [handleSubmit]);
 
   // slider
-
   return (
     <>
       <div className="auth_container">
@@ -216,7 +242,7 @@ const Auth = ({ state: { isAuth: Authenticated } }) => {
                     {register ? "Register" : "Login"}
                   </Button>
                   <Button
-                    className="mt-3"
+                    className="mt-3 "
                     variant="outlined"
                     color="primary"
                     size="small"
@@ -228,12 +254,10 @@ const Auth = ({ state: { isAuth: Authenticated } }) => {
                       : "Already have an account? SIGN IN"}
                   </Button>
                   <Divider />
-
-                  {/* <GoogleLogin
+                  {/* 
+                  <GoogleLogin
                     className="login-googleBtn"
-                    clientId={
-                      "772173664744-lr5pa17sih47aeb539m8svtht2v2oe1v.apps.googleusercontent.com"
-                    }
+                    clientId="901772827448-1abq67efvtoursl7ilec2i9pev77h3nu.apps.googleusercontent.com"
                     buttonText="Log in with Google"
                     onSuccess={handleLogin}
                     onFailure={handleFailure}

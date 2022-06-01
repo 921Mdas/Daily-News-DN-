@@ -43,9 +43,9 @@
 }
 
 .pub_avatar {
-  width: 100%;
+  width: max-content;
   background: var(--litegrey);
-  padding: 3px 4px;
+  padding: 3px 6px;
   border-radius: 3px;
 }
 

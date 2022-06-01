@@ -74,6 +74,19 @@ const signIn = async (req, res, next) => {
   }
 };
 
+const NewUser = async (req, res, next) => {
+  const { token } = req.body;
+  const ticket = await client.verifyIdToken({
+    idToken: token,
+    audience: process.env.CLIENT_ID,
+  });
+
+  const { name, email, picture } = ticket.getPayload();
+  upsert(users, { name, email, picture });
+  res.status(201);
+  res.json({ name, email, picture });
+};
+
 const userProfile = async (req, res, next) => {
   const user = res.locals.userData;
 
@@ -190,4 +203,5 @@ module.exports = {
   updateUserProfile,
   isAuthenticated,
   updateEmail,
+  NewUser,
 };
