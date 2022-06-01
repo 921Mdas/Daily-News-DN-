@@ -5,6 +5,7 @@ This is a news management tool that helps create articles, see them in detail an
 See the deployed App [DN - Daily News](https://dashnewsmads.herokuapp.com/) 
 
 
+<img width="1440" alt="Screen Shot 2022-05-25 at 10 49 53 AM" src="https://user-images.githubusercontent.com/66809588/171453199-215c0e92-65b2-449c-ac59-cb8c65f2b5b4.png">
 
 
 It allows to perform tasks such as:
