@@ -2,6 +2,17 @@
 DailyNews (DN) is an article management tool that helps freelance bloggers create articles,drafts and manage them in both web and mobile.
 ## Tools used : React, Express, MongoDB, JWT, Web Socket
 
+
+## Timeline
+
+| Day	                  |                                 Task |
+|:---------------------:|:------------------------------------:|
+| Day 1 |	Trello, Wireframe, ERD |
+| Day 2 |	Create backend: Server, Middlewares, Urls Postman Testing, authentication |
+| Day 3 |	React architecture, HOCs |
+| Day 4 |	CSS, responsiveness testing |
+| Day 4 |	Deploy to Heroku |
+
 See the deployed App [DN - Daily News](https://dashnewsmads.herokuapp.com/) 
 
 
