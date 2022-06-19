@@ -13,6 +13,13 @@ DailyNews (DN) is an article management tool that helps freelance bloggers creat
 | Day 4 |	CSS, responsiveness testing |
 | Day 4 |	Deploy to Heroku |
 
+
+## Trello
+
+<img width="1167" alt="image" src="https://user-images.githubusercontent.com/66809588/174493700-2a19fc04-5097-45bc-b85e-3132becc6be2.png">
+
+
+
 See the deployed App [DN - Daily News](https://dashnewsmads.herokuapp.com/) 
 
 
