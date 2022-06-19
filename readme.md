@@ -27,6 +27,9 @@ See the deployed App [DN - Daily News](https://dashnewsmads.herokuapp.com/)
 
 <img width="1415" alt="image" src="https://user-images.githubusercontent.com/66809588/171453534-56c059f6-07f7-4875-9c2b-f9985949c133.png">
 
+## Wireframes
+
+<img width="427" alt="image" src="https://user-images.githubusercontent.com/66809588/174495630-981326cc-9362-403c-a50e-72985657b8c8.png">
 
 
 It allows to perform tasks such as:
