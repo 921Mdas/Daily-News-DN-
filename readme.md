@@ -25,7 +25,6 @@ See the deployed App [DN - Daily News](https://dashnewsmads.herokuapp.com/)
 <img width="846" alt="image" src="https://user-images.githubusercontent.com/66809588/174495063-c25d2ac4-e457-4cc3-b251-ef5dd44c6ae2.png">
 
 
-<img width="1415" alt="image" src="https://user-images.githubusercontent.com/66809588/171453534-56c059f6-07f7-4875-9c2b-f9985949c133.png">
 
 ## Wireframes
 
@@ -47,6 +46,9 @@ Some upcoming features
 - [ ] Views on each article
 
 ## Gallery
+
+
+<img width="1415" alt="image" src="https://user-images.githubusercontent.com/66809588/171453534-56c059f6-07f7-4875-9c2b-f9985949c133.png">
 
 <img width="1414" alt="image" src="https://user-images.githubusercontent.com/66809588/171454005-8c673e5e-d271-46eb-9210-482ef54a0008.png">
 <img width="1405" alt="image" src="https://user-images.githubusercontent.com/66809588/171454199-73b9e8b0-aad2-490b-b5b4-c54045f1b58a.png">
