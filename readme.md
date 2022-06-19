@@ -16,7 +16,8 @@ DailyNews (DN) is an article management tool that helps freelance bloggers creat
 
 ## Trello
 
-<img width="1167" alt="image" src="https://user-images.githubusercontent.com/66809588/174493700-2a19fc04-5097-45bc-b85e-3132becc6be2.png">
+<img width="1178" alt="image" src="https://user-images.githubusercontent.com/66809588/174493769-a9cc3124-f8cb-44e2-ab95-be2b2542f741.png">
+
 
 
 
