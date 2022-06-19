@@ -1,5 +1,5 @@
-# CRUD PSG APP USING DJANGO
-DailyNews (DN) is a article management tool that helps create articles, see them in detail and manage article list (CRUD)
+# Daily News Web App
+DailyNews (DN) is an article management tool that helps freelance bloggers create articles,drafts and manage them in both web and mobile.
 ## Tools used : React, Express, MongoDB, JWT, Web Socket
 
 See the deployed App [DN - Daily News](https://dashnewsmads.herokuapp.com/) 
