@@ -1,6 +1,19 @@
 # Daily News Web App
-DailyNews (DN) is an article management tool that helps freelance bloggers create articles,drafts and manage them in both web and mobile.
+
+Are you a student working on a group essay? This is an
+alternative to saving in Microsoft word and forwarding to your
+classmates via email at each edit. DN allows you and your team
+to work in one interface online, and save the best version in
+your favourite.
+
 ## Tools used : React, Express, MongoDB, JWT, Web Socket
+
+
+How to use:
+- Sign up to create an account.
+- Sign in and use the form to create your first draft
+- Publish on your dashboard and manage coopies
+- Mark as your favourite
 
 See the deployed App [DN - Daily News](https://dashnewsmads.herokuapp.com/) 
 
