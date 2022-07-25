@@ -1,10 +1,9 @@
 # Daily News Web App
 
 Are you a student working on an article with a friend? This is an
-alternative to saving in Microsoft word and forwarding to your
+alternative to saving in Microsoft word and forwarding to your peers
 via email at each edit. DN allows you and your team
-to work in one interface online, and save the best version in
-your favourite.
+to work in one interface online, and save the best version.
 
 ## Tools used : React, Express, MongoDB, JWT, Web Socket
 
