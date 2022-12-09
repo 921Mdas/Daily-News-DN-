@@ -30,7 +30,9 @@ app.use(
 require("dotenv").config();
 require("./config/passport");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
 app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static("public"));
 
 // connect routes to server
 app.use("/api/users", userRoute);
