@@ -21,6 +21,7 @@
     "dotenv": "^16.0.3",
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
+    "express": "^4.18.2",
     "express-session": "^1.17.3",
     "formik": "^2.2.6",
     "gapi": "^0.0.3",
