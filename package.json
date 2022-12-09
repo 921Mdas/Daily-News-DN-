@@ -84,5 +84,12 @@
       "last 1 safari version"
     ]
   },
+  "resolutions": {
+    "stylus": "^0.54.8",
+    "autoprefixer": "10.4.5"
+  },
+  "overrides": {
+    "autoprefixer": "10.4.5"
+  },
   "proxy": "http://localhost:3001/"
 }
