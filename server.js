@@ -64,3 +64,7 @@ mongoose.connect(process.env.MONGO_URI, {
   // useCreateIndex: true,
   // useFindAndModify: false,
 });
+
+// AKIA4274FGTXKDBUMGGC; - access key
+// dBNSWp0dk1xIrHbLmmW22xyaV/QkIOstMwXOge6c;  - secret
+// pip3 install --upgrade --user awsebcli
