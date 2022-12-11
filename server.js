@@ -10,7 +10,7 @@ var articleRoute = require("./routes/api/articles");
 var { verifyToken } = require("./middleware/auth");
 var cors = require("cors");
 var cookieParser = require("cookie-parser");
-var session = require("express-session");
+var session = require("cookie-session");
 // var passport = require("passport");
 app.use(express.json());
 // var io = require("socket.io")();
