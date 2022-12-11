@@ -17,6 +17,7 @@
     "bcrypt": "^5.0.1",
     "bootstrap": "^4.5.3",
     "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "draft-js": "^0.11.7",
