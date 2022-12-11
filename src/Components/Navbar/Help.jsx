@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { SiDesignernews } from "react-icons/si";
 import { BsFillChatRightDotsFill } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import { useLocation } from "react-router-dom";
 import {
   TextField,
@@ -22,12 +22,12 @@ import {
 // const socketURL = "http://localhost:3001/";
 
 // production
-const socketURL =
-  process.env.NODE_ENV === "production"
-    ? window.location.hostname
-    : "http://localhost:3001/";
+// const socketURL =
+//   process.env.NODE_ENV === "production"
+//     ? window.location.hostname
+//     : "http://localhost:3001/";
 
-const socket = io.connect(socketURL, { secure: true });
+// const socket = io.connect(socketURL, { secure: true });
 
 const Help = ({ state: base, help, handleHelp }) => {
   const {
@@ -39,37 +39,37 @@ const Help = ({ state: base, help, handleHelp }) => {
 
   const personName = email.split("@")[0];
   const [state, setState] = useState({ message: "", name: "" });
-  const [chat, setChat] = useState([]);
+  // const [chat, setChat] = useState([]);
 
-  const renderChat = () => {
-    return chat?.map(({ name, message }, idx) => {
-      return (
-        <div key={idx}>
-          <div className="conversation">
-            <p className="chatter_name">{name}</p>
-            <p className="chatter_message">{message}</p>
-          </div>
-        </div>
-      );
-    });
-  };
+  // const renderChat = () => {
+  //   return chat?.map(({ name, message }, idx) => {
+  //     return (
+  //       <div key={idx}>
+  //         <div className="conversation">
+  //           <p className="chatter_name">{name}</p>
+  //           <p className="chatter_message">{message}</p>
+  //         </div>
+  //       </div>
+  //     );
+  //   });
+  // };
 
-  const onMessageSubmit = e => {
-    e.preventDefault();
-    const { name, message } = state;
-    socket.emit("message", { name, message });
-    setState({ message: "", name });
-  };
+  // const onMessageSubmit = e => {
+  //   e.preventDefault();
+  //   const { name, message } = state;
+  //   socket.emit("message", { name, message });
+  //   setState({ message: "", name });
+  // };
 
   const handleChange = e => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    socket.on("message", ({ name, message }) => {
-      setChat([...chat, { name, message }]);
-    });
-  });
+  // useEffect(() => {
+  //   socket.on("message", ({ name, message }) => {
+  //     setChat([...chat, { name, message }]);
+  //   });
+  // });
 
   return (
     <>
@@ -112,10 +112,10 @@ const Help = ({ state: base, help, handleHelp }) => {
             </div>
 
             <div className="chat_section">
-              <div className="message_displat">{renderChat()}</div>
+              {/* <div className="message_displat">{renderChat()}</div> */}
 
               <div className="message_chat">
-                <form action="" onSubmit={e => onMessageSubmit(e)}>
+                {/* <form action="" onSubmit={e => onMessageSubmit(e)}>
                   <div>
                     <TextField
                       className="name_field"
@@ -138,7 +138,7 @@ const Help = ({ state: base, help, handleHelp }) => {
                   <button className="chat_btn">
                     <FiSend />
                   </button>
-                </form>
+                </form> */}
               </div>
             </div>
           </div>
