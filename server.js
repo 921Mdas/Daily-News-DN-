@@ -3,7 +3,6 @@ var app = express();
 var mongoose = require("mongoose");
 var path = require("path");
 var bodyParser = require("body-parser");
-// const { OAuth2Client } = require("google-auth-library");
 var userRoute = require("./routes/api/users");
 var homeRoute = require("./routes/home");
 var articleRoute = require("./routes/api/articles");
@@ -11,9 +10,7 @@ var { verifyToken } = require("./middleware/auth");
 var cors = require("cors");
 var cookieParser = require("cookie-parser");
 var session = require("cookie-session");
-// var passport = require("passport");
 app.use(express.json());
-// var io = require("socket.io")();
 // middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -29,7 +26,6 @@ app.use(
 );
 require("dotenv").config();
 require("./config/passport");
-// const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 app.use(express.static(path.join(__dirname, "build")));
 app.use(express.static("public"));
@@ -49,22 +45,8 @@ const server = app.listen(port, () => {
   console.log("server running on port ⚙️" + port + "⚙️");
 });
 
-// io.attach(server);
-
-// io.on("connection", socket => {
-//   socket.on("message", ({ name, message }) => {
-//     io.emit("message", { name, message });
-//   });
-// });
-
 // connect to the db
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  // useCreateIndex: true,
-  // useFindAndModify: false,
 });
-
-// AKIA4274FGTXKDBUMGGC; - access key
-// dBNSWp0dk1xIrHbLmmW22xyaV/QkIOstMwXOge6c;  - secret
-// pip3 install --upgrade --user awsebcli
